@@ -2,7 +2,7 @@ import { ChatInputCommand, Command } from "@sapphire/framework";
 import { EmbedBuilder } from "discord.js";
 import { Utils } from "../utils/util";
 import { Database } from "../structures/Database";
-const {Colors, ButtonPages } = Utils;
+const { Colors, ButtonPages } = Utils;
 
 export class PurchaseCommand extends Command {
   public constructor(context: Command.Context, options: Command.Options) {

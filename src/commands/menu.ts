@@ -63,19 +63,6 @@ export class PurchaseCommand extends Command {
           customId: "shop:pedido",
           emoji: "1134181246029807637",
         }),
-
-        new ButtonBuilder({
-          label: "Precios",
-          style: ButtonStyle.Primary,
-          customId: "shop:precios",
-          emoji: "1135058349621252106",
-        }),
-        new ButtonBuilder({
-          label: "Combos de Inaguración",
-          style: ButtonStyle.Secondary,
-          customId: "shop:combos",
-          emoji: "1135684868701949962",
-        })
       ],
     });
 

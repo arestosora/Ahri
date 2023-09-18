@@ -3,8 +3,10 @@ import { EmbedBuilder, type ButtonInteraction, ActionRowBuilder, StringSelectMen
 import { Utils } from '../../utils/util';
 const { Emojis, Colors } = Utils
 import { Database } from '../../structures/Database';
+import { AhriLogger } from '../../structures/Logger';
+const AhriLog = new AhriLogger();
 
-export class ButtonHandler extends InteractionHandler {
+export class MainButton extends InteractionHandler {
     public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
         super(ctx, {
             ...options,
@@ -57,8 +59,10 @@ export class ButtonHandler extends InteractionHandler {
 
             })
         } catch (error) {
+            AhriLog.error(error)
             return interaction.reply({
                 content: `No he podido comunicarme contigo. **¡Por favor revisa si tienes tus mensajes privados desactivados!**. ${Emojis.General.Error}`,
+                ephemeral: true
             })
         }
 

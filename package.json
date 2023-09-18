@@ -2,11 +2,11 @@
     "name": "ahri",
     "version": "2.0.0",
     "description": "",
-    "main": "dist/Catto.js",
+    "main": "dist/index.js",
     "scripts": {
         "start": " npm run start:bot",
         "build": "tsc --project tsconfig.json",
-        "start:bot": "npm run build && node --enable-source-maps dist/Catto.js"
+        "start:bot": "npm run build && node --enable-source-maps dist/index.js"
     },
     "keywords": [],
     "author": "rain",
