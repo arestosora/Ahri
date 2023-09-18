@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  UserID     String   @id
+  Pedidos     Int @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Pedidos {
+  Referencia String @id
+  Cuentas_Asignadas String?
+  SN String
+  UserID String
+  Pedido String
+  Estado String @default("Pendiente")
+  Comprobante String
+  GuildID String @default("1133932007236309072") 
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Config {
+  GuildID String @id @default("1133932007236309072")
+  Pedidos_Enabled Boolean @default(true) 
+}
+
+model Cuentas {
+  Nickname String
+  Username String @id
+  Password String
+  RPDisponibles Int @default(2295)
+  Nota String?
+  Estado String @default("Disponible")
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Cuentas_Combos {
+  Nickname String
+  Username String @id
+  Password String
+  RPDisponibles Int @default(2295)
+  Nota String?
+  Estado String @default("Disponible")
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Cuentas_Banco {
+  Nickname String
+  Username String @id
+  Password String
+  RPDisponibles Int @default(2295)
+  Nota String?
+  Estado String @default("Disponible")
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+}
