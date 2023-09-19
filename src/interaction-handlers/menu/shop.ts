@@ -20,7 +20,7 @@ export const build = async (
     return new Promise((resolve) => {
         actionRowBuilder.addComponents(
             new StringSelectMenuBuilder()
-                .setCustomId(`menus:shop_a_${data?.join(",")}`)
+                .setCustomId(`menu:shop_a_${data?.join(",")}`)
                 .setPlaceholder(
                     options.disabled ? "Menú no disponible" : "Seleccione una opción"
                 )
@@ -75,8 +75,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-       // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        //  if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+       if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -112,7 +112,7 @@ export class ShopMenuHandler extends InteractionHandler {
             switch (opcion) {
                 case "RP": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/rp');
+                    const menu = await import('./rp');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [
@@ -134,7 +134,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                 case "skins": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/skins');
+                    const menu = await import('./skin');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [
@@ -156,7 +156,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                 case "artesania": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/artesania');
+                    const menu = await import('./chest');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [
@@ -178,7 +178,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                 case "capsulas": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/capsulas');
+                    const menu = await import('./cap');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [
@@ -200,7 +200,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                 case "nitro": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/nitro');
+                    const menu = await import('./nitro');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [
@@ -222,7 +222,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                 case "wc": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
-                    const menu = await import('../menus/products/wc');
+                    const menu = await import('./wc');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [

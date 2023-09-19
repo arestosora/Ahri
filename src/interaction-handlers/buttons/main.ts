@@ -49,7 +49,7 @@ export class MainButton extends InteractionHandler {
             .setColor(Colors.Info)
 
         const row = new ActionRowBuilder<StringSelectMenuBuilder>
-        const options = await import('../menus/shop');
+        const options = await import('../menu/shop');
         await options.build(row, { disabled: false, author: interaction.user.id }, [])
 
         try {

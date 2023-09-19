@@ -1,9 +1,9 @@
 import { InteractionHandler, InteractionHandlerTypes, PieceContext } from "@sapphire/framework";
 import { StringSelectMenuInteraction, EmbedBuilder, MessageCollector, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } from "discord.js";
-import { TextOnImageOptions, Utils } from "../../../utils/util";
+import { TextOnImageOptions, Utils } from "../../utils/util";
 const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
-import { Ahri } from "../../..";
-import { AhriLogger } from "../../../structures/Logger";
+import { Ahri } from "../..";
+import { AhriLogger } from "../../structures/Logger";
 
 const Log = new AhriLogger();
 
@@ -20,7 +20,7 @@ export const build = async (
     return new Promise((resolve) => {
         actionRowBuilder.addComponents(
             new StringSelectMenuBuilder()
-                .setCustomId(`menus:shop_a_${data?.join(",")}`)
+                .setCustomId(`menu:cap_a_${data?.join(",")}`)
                 .setPlaceholder(
                     options.disabled ? "Menú no disponible" : "Seleccione una opción"
                 )
@@ -65,8 +65,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+       // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+             if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {

@@ -1,10 +1,9 @@
 import { InteractionHandler, InteractionHandlerTypes, PieceContext } from "@sapphire/framework";
 import { StringSelectMenuInteraction, EmbedBuilder, MessageCollector, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } from "discord.js";
-import { TextOnImageOptions, Utils } from "../../../utils/util";
+import { TextOnImageOptions, Utils } from "../../utils/util";
 const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
-import { Ahri } from "../../..";
-import { AhriLogger } from "../../../structures/Logger";
-
+import { Ahri } from "../..";
+import { AhriLogger } from "../../structures/Logger";
 const Log = new AhriLogger();
 
 interface optionsObject {
@@ -20,32 +19,38 @@ export const build = async (
     return new Promise((resolve) => {
         actionRowBuilder.addComponents(
             new StringSelectMenuBuilder()
-                .setCustomId(`menus:shop_a_${data?.join(",")}`)
+                .setCustomId(`menu:wc_a_${data?.join(",")}`)
                 .setPlaceholder(
                     options.disabled ? "Menú no disponible" : "Seleccione una opción"
                 )
                 .setDisabled(options.disabled)
                 .setOptions(
                     {
-                        label: "Cofre Artesano + Llave",
-                        emoji: "1136127811078332578", // 1
-                        value: "cofre1:HIM",
+                        label: "500 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "500:HIM",
                     },
                     {
-                        label: "5 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 2
-                        value: "cofre5:HIM",
+                        label: "1000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
                     {
-                        label: "11 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 3
-                        value: "cofre11:HIM",
+                        label: "3000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
                     {
-                        label: "Pase de League of Legends",
-                        emoji: "1136127461562781817", // 3
-                        value: "pase:HIM",
+                        label: "5000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
+                    {
+                        label: "10000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
+                    },
+
 
                 )
         );
@@ -65,8 +70,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+            if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
