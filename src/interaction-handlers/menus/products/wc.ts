@@ -27,25 +27,31 @@ export const build = async (
                 .setDisabled(options.disabled)
                 .setOptions(
                     {
-                        label: "Cofre Artesano + Llave",
-                        emoji: "1136127811078332578", // 1
-                        value: "cofre1:HIM",
+                        label: "500 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "500:HIM",
                     },
                     {
-                        label: "5 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 2
-                        value: "cofre5:HIM",
+                        label: "1000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
                     {
-                        label: "11 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 3
-                        value: "cofre11:HIM",
+                        label: "3000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
                     {
-                        label: "Pase de League of Legends",
-                        emoji: "1136127461562781817", // 3
-                        value: "pase:HIM",
+                        label: "5000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
                     },
+                    {
+                        label: "10000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "1000:HIM",
+                    },
+
 
                 )
         );

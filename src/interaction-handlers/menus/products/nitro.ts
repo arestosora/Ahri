@@ -27,26 +27,15 @@ export const build = async (
                 .setDisabled(options.disabled)
                 .setOptions(
                     {
-                        label: "Cofre Artesano + Llave",
-                        emoji: "1136127811078332578", // 1
-                        value: "cofre1:HIM",
+                        label: "Opción 1 > Acceso a tu cuenta.",
+                        emoji: "1149426772765581442", // 1
+                        value: "opcion1:HIM",
                     },
                     {
-                        label: "5 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 2
-                        value: "cofre5:HIM",
-                    },
-                    {
-                        label: "11 Cofres Artesanos + Llaves",
-                        emoji: "1136127811078332578", // 3
-                        value: "cofre11:HIM",
-                    },
-                    {
-                        label: "Pase de League of Legends",
-                        emoji: "1136127461562781817", // 3
-                        value: "pase:HIM",
-                    },
-
+                        label: "Opción 2 > Enviar como regalo.",
+                        emoji: "1149426772765581442", // 2
+                        value: "opcion2:HIM",
+                    }
                 )
         );
         resolve(true);

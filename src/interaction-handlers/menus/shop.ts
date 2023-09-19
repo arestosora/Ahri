@@ -75,8 +75,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-        if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+       // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -95,20 +95,14 @@ export class ShopMenuHandler extends InteractionHandler {
 
     public async run(interaction: StringSelectMenuInteraction) {
         try {
-
-            const data = interaction.customId
-                .split(/_+/g)
-            [interaction.customId.split(/_+/g).length - 1].split(/,+/g);
+            const data = interaction.customId.split(/_+/g)[interaction.customId.split(/_+/g).length - 1].split(/,+/g);
             const user = data[0];
-
             let selectedOption = interaction.values[0];
-
             selectedOption = selectedOption
                 .replace(":HIM", user)
                 .replace("ME", interaction.user.id);
 
             let args: any[] = selectedOption.split(/:+/g);
-
             for (let i = 0; i < args.length; i++) {
                 args[i] = [...args[i].split(/&+/g)];
             }
@@ -181,6 +175,70 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
 
                 break;
+
+                case "capsulas": {
+                    const row = new ActionRowBuilder<StringSelectMenuBuilder>
+                    const menu = await import('../menus/products/capsulas');
+                    await menu.build(row, { disabled: false, author: interaction.user.id }, [])
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Parece que has seleccionado el producto \`Artesanía de League of Legends\` por favor selecciona que tipo de artesanía deseas Adquirir."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [row],
+                    });
+                }
+
+                break;
+
+                case "nitro": {
+                    const row = new ActionRowBuilder<StringSelectMenuBuilder>
+                    const menu = await import('../menus/products/nitro');
+                    await menu.build(row, { disabled: false, author: interaction.user.id }, [])
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Parece que has seleccionado el producto \`Discord Nitro Ultimate\` ten presente que tienes 2 opciones para este producto, puedes adquirirlo mas economico si nos das acceso a tu cuenta, o puedes adquirirlo sin darnos acceso a tu cuenta, pero el precio sera mas elevado, por favor selecciona la opcion que deseas adquirir."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [],
+                    });
+                }
+
+                break;
+
+                case "wc": {
+                    const row = new ActionRowBuilder<StringSelectMenuBuilder>
+                    const menu = await import('../menus/products/wc');
+                    await menu.build(row, { disabled: false, author: interaction.user.id }, [])
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Parece que has seleccionado el producto \`LoL: Wild Rift Wild Cores\` por favor selecciona que cantidad de Wild Cores deseas Adquirir."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [row],
+                    });
+                }
             }
 
 
