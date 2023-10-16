@@ -28,7 +28,7 @@ export const build = async (
                 .setOptions(
                     {
                         label: "Nitro Boost.",
-                        emoji: "1149426772765581442", // 2
+                        emoji: "1153438711732781086", // 2
                         value: "Nitro:HIM",
                     }
                 )
