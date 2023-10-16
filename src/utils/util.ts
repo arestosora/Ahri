@@ -4,7 +4,7 @@ import TinyURL from "tinyurl";
 import path from "path";
 import fs from "fs";
 import { Colors as DiscordColors, ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType } from "discord.js";
-import { loadImage, createCanvas } from "canvas";
+import { Image, createCanvas, Canvas } from "canvas";
 dotenv.config();
 
 
@@ -53,17 +53,17 @@ export class Utils {
     };
 
     public static readonly Prices = {
-        CofreArtesano: process.env.COFRES1,
-        CofreArtesanoX5: process.env.COFRES5,
-        cofreArtesanoX11: process.env.COFRES11,
-        CofreArtesanoX28: process.env.COFRES28,
-        Capsula: process.env.CAPSULA,
-        CapsulaX3: process.env.CAPSULA3,
-        CapsulaX9: process.env.CAPSULA9,
-        Pase: process.env.PASE,
-        DiscordNitro: process.env.NITRO,
-        CapsulaPrimeGaming: process.env.CAPSULAPRIME,
-        WildCores: process.env.WC
+        CofreArtesano: parseInt(process.env.COFRES1),
+        CofreArtesanoX5: parseInt(process.env.COFRES5),
+        cofreArtesanoX11: parseInt(process.env.COFRES11),
+        CofreArtesanoX28: parseInt(process.env.COFRES28),
+        Capsula: parseInt(process.env.CAPSULA),
+        CapsulaX3: parseInt(process.env.CAPSULA3),
+        CapsulaX9: parseInt(process.env.CAPSULA9),
+        Pase: parseInt(process.env.PASE),
+        DiscordNitro: parseInt(process.env.NITRO),
+        CapsulaPrimeGaming: parseInt(process.env.CAPSULAPRIME),
+        WildCores: parseInt(process.env.WC)
     }
 
     public static async ButtonPages(interaction: any, pages: any[], time: number = 6000) {
@@ -209,35 +209,57 @@ export class Utils {
         });
     }
 
-    public static async drawTextOnImage(imageURL: string, options: TextOnImageOptions): Promise<string> {
-        const { text, fontSize, fontColor, x, y } = options;
-
-        // Carga la imagen desde la URL.
-        const image = await loadImage(imageURL);
-
-        // Establece el tamaño del canvas para que coincida con el de la imagen.
-        const canvas = createCanvas(image.width, image.height);
+    public static async drawTextOnImage(backgroundImage: Image, options: TextOnImageOptions, imageToDraw: Image): Promise<string> {
+        const { text, fontSize, fontColor } = options;
+    
+        // Crea un canvas con las dimensiones del fondo (1280x720).
+        const canvas = createCanvas(1280, 720);
         const ctx = canvas.getContext('2d');
-
-        // Dibuja la imagen en el canvas.
-        ctx.drawImage(image, 0, 0, image.width, image.height);
-
+    
+        // Dibuja la imagen de fondo en el canvas.
+        ctx.drawImage(backgroundImage, 0, 0, 1280, 720);
+    
+        // Calcula las dimensiones de la imagen para que quepa dentro del fondo (1280x720).
+        const maxWidth = 1280;
+        const maxHeight = 720;
+        const aspectRatio = imageToDraw.width / imageToDraw.height;
+    
+        let newWidth = maxWidth;
+        let newHeight = maxWidth / aspectRatio;
+    
+        if (newHeight > maxHeight) {
+            newHeight = maxHeight;
+            newWidth = maxHeight * aspectRatio;
+        }
+    
+        // Calcula las coordenadas para centrar la imagen dentro del fondo.
+        const imageX = (1280 - newWidth) / 2;
+        const imageY = (720 - newHeight) / 2;
+    
+        // Dibuja la imagen adicional (imageToDraw) en el canvas, haciendo que quepa dentro de 1280x720.
+        ctx.drawImage(imageToDraw, imageX, imageY, newWidth, newHeight);
+    
         // Establece las propiedades de estilo del texto.
         ctx.fillStyle = fontColor;
         ctx.font = `${fontSize}px Arial`;
         ctx.textAlign = 'center';
-
-        // Dibuja el texto en el canvas.
-        ctx.fillText(text, x, y);
-
+    
+        // Calcula las coordenadas para centrar el texto en el canvas.
+        const textX = 1280 / 2;
+        const textY = 500;
+    
+        // Dibuja el texto en el centro del canvas, delante de la imagen.
+        ctx.fillText(text, textX, textY);
+    
         // Genera un nombre de archivo único para la imagen con el texto dibujado.
         const filename = `${Date.now()}.png`;
-
+    
         // Guarda el canvas en un archivo en la carpeta local.
-        const outputPath = path.join(__dirname, '../../output', filename);
+        const outputPath = path.join(__dirname, './output', filename);
         const out = fs.createWriteStream(outputPath);
         const stream = canvas.createPNGStream();
         stream.pipe(out);
+    
         return new Promise<string>((resolve, reject) => {
             out.on('finish', () => {
                 resolve(outputPath); // Devuelve la ruta del archivo guardado localmente.

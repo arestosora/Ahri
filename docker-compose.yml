@@ -1,17 +1,15 @@
-version: '3.8'
+version: '3'
 
 services:
-  ggdb:
-    image: mysql
+  mysql:
+    image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: ggdb
-    ports:
-      - 3307:3306
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=ahri
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports: 
+      - '3306:3306'
 
-  app:
-    build: .
-    depends_on:
-      - ggdb
-    ports:
-      - 8080:8080
+volumes:
+  mysql_data:

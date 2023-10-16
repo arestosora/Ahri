@@ -100,8 +100,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-       // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-             if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+         //    if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -202,7 +202,7 @@ export class ShopMenuHandler extends InteractionHandler {
                             iconURL: interaction.user.displayAvatarURL(),
                           })
                           .setDescription(
-                            `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                            `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                           )
                           .setColor(Colors.Success);
           
@@ -346,7 +346,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -488,7 +488,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -633,7 +633,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -776,7 +776,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -920,7 +920,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -1064,7 +1064,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -1208,7 +1208,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -1352,7 +1352,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -1495,7 +1495,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 
@@ -1638,7 +1638,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                 )
                                 .setColor(Colors.Success);
 

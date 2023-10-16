@@ -75,8 +75,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        //  if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-       if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+       // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -210,11 +210,11 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Parece que has seleccionado el producto \`Discord Nitro Ultimate\` ten presente que tienes 2 opciones para este producto, puedes adquirirlo mas economico si nos das acceso a tu cuenta, o puedes adquirirlo sin darnos acceso a tu cuenta, pero el precio sera mas elevado, por favor selecciona la opcion que deseas adquirir."
+                                    "Parece que has seleccionado el producto \`Discord Nitro Ultimate\` por favor selecciona que tipo de Nitro deseas Adquirir."
                                 )
                                 .setColor(Colors.Success),
                         ],
-                        components: [],
+                        components: [row],
                     });
                 }
 
@@ -241,8 +241,6 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
             }
 
-
-
         } catch (error) {
             Log.error(error);
             return interaction.channel.send({
@@ -255,7 +253,7 @@ export class ShopMenuHandler extends InteractionHandler {
                         .setColor(Colors.Error)
                         .setDescription(
                             `${Emojis.General.Error} Ha ocurrido un error al realizar tu pedido, inténtalo de nuevo. En caso de que el error persista, contacta con los administradores.`
-                        ),
+                    ),
                 ],
             });
         }

@@ -5,6 +5,8 @@ const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Uti
 import { Ahri } from "../..";
 import { AhriLogger } from "../../structures/Logger";
 import { uploadImageToCloudinary } from "../../utils/functions/Cloudinary";
+import { loadImage } from "canvas";
+import { dirname } from "path";
 
 const Log = new AhriLogger();
 
@@ -30,17 +32,17 @@ export const build = async (
                     {
                         label: "Skin épica 1350 RP",
                         emoji: "1149419858241532049", // 1
-                        value: "epica:HIM",
+                        value: "skin1350:HIM",
                     },
                     {
                         label: "Skin Legendaria 1820 RP",
                         emoji: "1149420773275095222", // 2
-                        value: "legendaria:HIM",
+                        value: "skin1820:HIM",
                     },
                     {
                         label: "Skin Definitiva 3250 RP",
                         emoji: "1149420803151122503", // 3
-                        value: "definitiva:HIM",
+                        value: "skin3250:HIM",
                     },
 
                 )
@@ -61,8 +63,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-        if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+      //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -100,7 +102,7 @@ export class ShopMenuHandler extends InteractionHandler {
             const opcion = args[0][0];
 
             switch (opcion) {
-                case "epica": {
+                case "skin1350": {
                     await interaction.update({
                         embeds: [
                             new EmbedBuilder()
@@ -109,7 +111,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado la `Skin Epica de 1350 RP`. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado `Skin Epica de 1350 RP`. Ahora por favor escribe tu nombre de invocador."
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -208,7 +210,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             iconURL: interaction.user.displayAvatarURL(),
                                         })
                                         .setDescription(
-                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                         )
                                         .setColor(Colors.Success);
 
@@ -232,14 +234,18 @@ export class ShopMenuHandler extends InteractionHandler {
 
                                 await interaction.channel.send({ content: `${Emojis.Misc.Loading}` }).then(async (msg) => {
                                     try {
+                                        // Cargar la imagen adicional
+                                        const imageToDraw = await loadImage(attachmentURL);
+                                        const backgroundImage = await loadImage("./assets/bg.png");
+                            
                                         const textOptions: TextOnImageOptions = {
-                                            text: skin, // O el texto que desees poner en la imagen.
+                                            text: skin, 
                                             fontSize: 50, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
-                                            y: 500, // Posición y del texto en la imagen.
+                                            y: 200, // Posición y del texto en la imagen.
                                         };
-                                        const localImagePath = await drawTextOnImage(attachmentURL, textOptions);
+                                        const localImagePath = await drawTextOnImage(backgroundImage, textOptions, imageToDraw); // Pasa la imagen de fondo como primer argumento
                                         const publicImageURL = await uploadImageToCloudinary(localImagePath);
                                         const shortURL = await shortenURL(publicImageURL);
 
@@ -307,7 +313,7 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
                     break;
 
-                case "legendaria": {
+                case "skin1820": {
                     await interaction.update({
                         embeds: [
                             new EmbedBuilder()
@@ -316,7 +322,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado la `Skin Legendaria de 1820 RP`. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado `Skin Legendaria de 1820 RP`. Ahora por favor escribe tu nombre de invocador."
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -415,7 +421,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             iconURL: interaction.user.displayAvatarURL(),
                                         })
                                         .setDescription(
-                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                         )
                                         .setColor(Colors.Success);
 
@@ -439,14 +445,18 @@ export class ShopMenuHandler extends InteractionHandler {
 
                                 await interaction.channel.send({ content: `${Emojis.Misc.Loading}` }).then(async (msg) => {
                                     try {
+                                        // Cargar la imagen adicional
+                                        const imageToDraw = await loadImage(attachmentURL);
+                                        const backgroundImage = await loadImage("./assets/bg.png");
+                            
                                         const textOptions: TextOnImageOptions = {
-                                            text: skin, // O el texto que desees poner en la imagen.
+                                            text: skin, 
                                             fontSize: 50, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
-                                            y: 500, // Posición y del texto en la imagen.
+                                            y: 200, // Posición y del texto en la imagen.
                                         };
-                                        const localImagePath = await drawTextOnImage(attachmentURL, textOptions);
+                                        const localImagePath = await drawTextOnImage(backgroundImage, textOptions, imageToDraw); // Pasa la imagen de fondo como primer argumento
                                         const publicImageURL = await uploadImageToCloudinary(localImagePath);
                                         const shortURL = await shortenURL(publicImageURL);
 
@@ -514,7 +524,7 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
                     break;
 
-                    case "definitiva": {
+                    case "skin3250": {
                         await interaction.update({
                             embeds: [
                                 new EmbedBuilder()
@@ -523,7 +533,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         iconURL: this.container.client.user.displayAvatarURL(),
                                     })
                                     .setDescription(
-                                        "Has seleccionado la `Skin Definitiva de 3250 RP`. Ahora por favor escribe tu nombre de invocador."
+                                        "Has seleccionado `Skin Definitiva de 3250 RP`. Ahora por favor escribe tu nombre de invocador."
                                     )
                                     .setColor(Colors.Success),
                             ],
@@ -622,7 +632,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                 iconURL: interaction.user.displayAvatarURL(),
                                             })
                                             .setDescription(
-                                                `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.\nPuedes revisar los precios en: <#1133964283764555787>.`
+                                                `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
                                             )
                                             .setColor(Colors.Success);
     
@@ -646,16 +656,20 @@ export class ShopMenuHandler extends InteractionHandler {
     
                                     await interaction.channel.send({ content: `${Emojis.Misc.Loading}` }).then(async (msg) => {
                                         try {
-                                            const textOptions: TextOnImageOptions = {
-                                                text: skin, // O el texto que desees poner en la imagen.
-                                                fontSize: 50, // El tamaño de la fuente.
-                                                fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
-                                                x: 500, // Posición x del texto en la imagen.
-                                                y: 500, // Posición y del texto en la imagen.
-                                            };
-                                            const localImagePath = await drawTextOnImage(attachmentURL, textOptions);
-                                            const publicImageURL = await uploadImageToCloudinary(localImagePath);
-                                            const shortURL = await shortenURL(publicImageURL);
+                                            // Cargar la imagen adicional
+                                        const imageToDraw = await loadImage(attachmentURL);
+                                        const backgroundImage = await loadImage("./assets/bg.png");
+                            
+                                        const textOptions: TextOnImageOptions = {
+                                            text: `${name}\n${skin}`,
+                                            fontSize: 50, // El tamaño de la fuente.
+                                            fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
+                                            x: 500, // Posición x del texto en la imagen.
+                                            y: 200, // Posición y del texto en la imagen.
+                                        };
+                                        const localImagePath = await drawTextOnImage(backgroundImage, textOptions, imageToDraw); // Pasa la imagen de fondo como primer argumento
+                                        const publicImageURL = await uploadImageToCloudinary(localImagePath);
+                                        const shortURL = await shortenURL(publicImageURL);
     
                                             const AttachmentEmbed = new EmbedBuilder()
                                                 .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)

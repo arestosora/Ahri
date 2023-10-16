@@ -1,6 +1,6 @@
 import { InteractionHandler, InteractionHandlerTypes, PieceContext } from "@sapphire/framework";
 import { StringSelectMenuInteraction, EmbedBuilder, MessageCollector, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } from "discord.js";
-import { TextOnImageOptions, Utils } from "../../utils/util";
+import { Utils } from "../../utils/util";
 const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
 import { Ahri } from "../..";
 import { AhriLogger } from "../../structures/Logger";
@@ -27,14 +27,9 @@ export const build = async (
                 .setDisabled(options.disabled)
                 .setOptions(
                     {
-                        label: "Opción 1 > Acceso a tu cuenta.",
-                        emoji: "1149426772765581442", // 1
-                        value: "opcion1:HIM",
-                    },
-                    {
-                        label: "Opción 2 > Enviar como regalo.",
+                        label: "Nitro Boost.",
                         emoji: "1149426772765581442", // 2
-                        value: "opcion2:HIM",
+                        value: "Nitro:HIM",
                     }
                 )
         );
@@ -54,8 +49,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+       //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -82,10 +77,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
             let selectedOption = interaction.values[0];
 
-            selectedOption = selectedOption
-                .replace(":HIM", user)
-                .replace("ME", interaction.user.id);
-
+            selectedOption = selectedOption.replace(":HIM", user).replace("ME", interaction.user.id);
             let args: any[] = selectedOption.split(/:+/g);
 
             for (let i = 0; i < args.length; i++) {
@@ -95,10 +87,82 @@ export class ShopMenuHandler extends InteractionHandler {
             const opcion = args[0][0];
 
             switch (opcion) {
+                case "Nitro": {
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({ name: `${Ahri.user.username}`, iconURL: Ahri.user.displayAvatarURL() })
+                                .setColor(Colors.Success)
+                                .setDescription(`${Emojis.General.Success} ¡Envia por favor el comprobante de pago!`)
+                        ],
+                        components: []
+                    });
+                    const imageCollector = new MessageCollector(interaction.channel, {
+                        filter: (msg) =>
+                            msg.author.id === interaction.user.id && msg.attachments.size > 0,
+                        max: 1
+                    });
 
+                    imageCollector.on("collect", async (message) => {
+                        const attachment = message.attachments.first();
+                        const attachmentURL = attachment?.url;
+                        const attachmentName = attachment?.name;
+                        await shortenURL(attachmentURL).then(async (shortURL) => {
+                            const AttachmentEmbed = new EmbedBuilder()
+                                .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
+                                .setAuthor({
+                                    name: `${interaction.user.username}`,
+                                    iconURL: interaction.user.displayAvatarURL(),
+                                })
+                                .addFields(
+                                    {
+                                        name: "Nombre",
+                                        value: `\`${interaction.user.displayName}\``,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: "Producto",
+                                        value: `\`${selectedOption}\``,
+                                        inline: true,
+                                    },
+                                    {
+                                        name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
+                                    }
+
+                                )
+                                .setDescription(`Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`)
+                                .setColor(Colors.Success)
+                                .setImage(attachmentURL);
+
+                            const botone = new ActionRowBuilder<ButtonBuilder>();
+                            const module1 = await import(
+                                "../buttons/g/c"
+                            );
+                            const module2 = await import(
+                                "../buttons/g/a"
+                            );
+
+                            await module1.build(
+                                botone,
+                                { disabled: false, author: interaction.user.id },
+                                []
+                            );
+                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                            );
+
+                            await interaction.channel.send({
+                                embeds: [AttachmentEmbed],
+                                components: [botone],
+                            });
+                        }).catch((error) => {
+                            Log.error('Error al acortar la URL:', error);
+                        });
+
+                    });
+                }
+
+                    break;
             }
-
-
 
         } catch (error) {
             Log.error(error);

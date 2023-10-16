@@ -2,7 +2,7 @@ import { InteractionHandler, InteractionHandlerTypes, PieceContext } from '@sapp
 import { EmbedBuilder, Emoji, TextChannel, User } from 'discord.js';
 import { ActionRowBuilder, ButtonInteraction, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Utils } from '../../../utils/util';
-const { Colors, Emojis } = Utils;
+const { Colors, Emojis, Prices } = Utils;
 import { Database } from "../../../structures/Database";
 
 interface optionsObject {
@@ -33,8 +33,8 @@ export class ButtonHandler extends InteractionHandler {
     public override async parse(interaction: ButtonInteraction) {
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        //  if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+          if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+      //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -61,82 +61,83 @@ export class ButtonHandler extends InteractionHandler {
         await module1.build(botone, { disabled: false, author: interaction.user.id }, dataArray)
         await module2.build(botone, { disabled: false, author: interaction.user.id }, dataArray)
 
-        async function asignarRPs(RP_Pedido, cuentas) {
+        async function asignarRPs(_RP_Pedido: number, cuentas: string | any[]) {
             const custompedido = dataArray[2].toLowerCase();
-            const customPrefixes = ["custom", "orb", "skin"];
-            let RP_Pedido_Modificado = custompedido.startsWith("custom") ? 2295 : parseInt(custompedido);
+            if (custompedido === "nitro" || custompedido.endsWith("wc")) {
+                return [''];
+            }
+            console.log(custompedido);
+
+            const customPrefixes = ["cofre", "capsula", "skin", "pase"];
+            const customPrefixMap = {
+                "skin3250": 3250,
+                "skin1350": 1350,
+                "skin1820": 1820,
+                "cofre1": 250,
+                "cofre5": 250 * 5,
+                "cofre11": 250 * 11,
+                "pase": 1650,
+                "capsula1": 750,
+                "capsula3": 750 * 3,
+                "capsula9": 750 * 9,
+                "capsula11": 750 * 11,
+            };
+
+            let RP_Pedido_Modificado = parseInt(custompedido);
 
             if (customPrefixes.some(prefix => custompedido.startsWith(prefix))) {
-                if (custompedido === "skin3250" || custompedido === "skin1350" || custompedido === "skin1820") {
-                    const cuentasBanco = await Database.cuentas_Banco.findMany({
-                        where: {
-                            Estado: 'Disponible'
-                        }
-                    });
+                const RPsAsignar = customPrefixMap[custompedido];
 
-                    const cuenta = cuentasBanco[0];
-                    if (cuenta) {
-                        let RPsAsignar = 0;
+                if (!RPsAsignar) {
+                    return [];
+                }
 
-                        if (custompedido === "skin3250") {
-                            RPsAsignar = 3250;
-                        } else if (custompedido === "skin1350") {
-                            RPsAsignar = 1350;
-                        } else if (custompedido === "skin1820") {
-                            RPsAsignar = 1820;
-                        }
-
-                        if (cuenta.RPDisponibles >= RPsAsignar) {
-                            const cuentasAsignadas = [{
-                                Nickname: cuenta.Nickname,
-                                Username: cuenta.Username,
-                                Password: cuenta.Password,
-                                RPsAsignados: RPsAsignar
-                            }];
-
-                            await Database.cuentas_Banco.update({
-                                where: { Username: cuenta.Username },
-                                data: {
-                                    RPDisponibles: cuenta.RPDisponibles - RPsAsignar,
-                                    Estado: cuenta.RPDisponibles - RPsAsignar <= RPsAsignar ? 'No Disponible' : cuenta.Estado,
-                                },
-                            });
-
-                            return cuentasAsignadas;
-                        } else {
-                            return [];
-                        }
+                const cuentasBanco = await Database.cuentas_Banco.findMany({
+                    where: {
+                        Estado: 'Disponible'
                     }
-                } else {
-                    const cuentasCombos = await Database.cuentas_Combos.findMany({
-                        where: {
-                            Estado: 'Disponible'
+                });
+
+                let cuentasAsignadas = [];
+                let RPsAsignados = 0;
+
+                for (const cuenta of cuentasBanco) {
+                    if (RPsAsignados >= RP_Pedido_Modificado) {
+                        break;
+                    }
+
+                    if (cuenta.RPDisponibles >= RPsAsignar) {
+                        cuentasAsignadas.push({
+                            Nickname: cuenta.Nickname,
+                            Username: cuenta.Username,
+                            Password: cuenta.Password,
+                            RPsAsignados: RPsAsignar
+                        });
+
+                        const newRPDisponibles = cuenta.RPDisponibles - RPsAsignar;
+                        let newEstado = cuenta.Estado;
+
+                        if (newRPDisponibles === 0) {
+                            newEstado = 'No Disponible';
                         }
-                    });
 
-                    const cuenta = cuentasCombos[0];
-                    if (cuenta) {
-                        const RPsAsignar = 2295;
+                        await Database.cuentas_Banco.update({
+                            where: { Username: cuenta.Username },
+                            data: {
+                                RPDisponibles: newRPDisponibles,
+                                Estado: newEstado,
+                            },
+                        });
 
-                        if (cuenta.RPDisponibles >= RPsAsignar) {
-                            const cuentasAsignadas = [{
-                                Nickname: cuenta.Nickname,
-                                Username: cuenta.Username,
-                                Password: cuenta.Password,
-                                RPsAsignados: RPsAsignar
-                            }];
-
-                            await Database.cuentas_Combos.update({
-                                where: { Username: cuenta.Username },
-                                data: { RPDisponibles: 0, Estado: 'No Disponible' },
-                            });
-
-                            return cuentasAsignadas;
-                        } else {
-                            return [];
-                        }
+                        RPsAsignados += RPsAsignar;
                     }
                 }
+
+                if (RPsAsignados < RP_Pedido_Modificado) {
+                    return [];
+                }
+
+                return cuentasAsignadas;
             } else {
                 let cuentasAsignadas = [];
                 let RPsAsignados = 0;
@@ -155,26 +156,22 @@ export class ButtonHandler extends InteractionHandler {
                             RPsAsignados: RPsAsignar
                         });
 
+                        const newRPDisponibles = RPsDisponibles - RPsAsignar;
+                        let newEstado = cuenta.Estado;
+
+                        if (newRPDisponibles === 0) {
+                            newEstado = 'No Disponible';
+                        }
+
                         await Database.cuentas.update({
                             where: { Username: cuenta.Username },
-                            data: { RPDisponibles: RPsDisponibles - RPsAsignar },
+                            data: { RPDisponibles: newRPDisponibles, Estado: newEstado },
                         });
-
-                        if (RPsDisponibles - RPsAsignar === 0) {
-                            await Database.cuentas.update({
-                                where: { Username: cuenta.Username },
-                                data: { Estado: 'No Disponible' },
-                            });
-                        }
 
                         RPsAsignados += RPsAsignar;
                     }
 
                     i++;
-                }
-
-                if (cuentasAsignadas.length > 0) {
-                    console.table(cuentasAsignadas);
                 }
 
                 return cuentasAsignadas;
@@ -197,7 +194,12 @@ export class ButtonHandler extends InteractionHandler {
 
         const cuentasAsignadas = await asignarRPs(RP_Pedido, cuentas);
 
-        if (cuentasAsignadas.length === 0) return;
+        if (cuentasAsignadas.length === 0) {
+            return interaction.reply({
+                content: "No hay suficientes cuentas disponibles para este pedido.",
+                ephemeral: true
+            });
+        };
 
         const nicknamesAsignados = cuentasAsignadas.map(cuenta => cuenta.Nickname).join(', ');
 
@@ -241,33 +243,42 @@ export class ButtonHandler extends InteractionHandler {
             .setThumbnail(user.displayAvatarURL())
             .addFields([
                 {
-                    name: 'Summoner Name',
+                    name: 'Name',
                     value: `\`${dataArray[1]}\``,
                     inline: true
                 },
                 {
-                    name: 'Producto',
-                    value: `\`${dataArray[2]}\` RP`,
+                    name: 'Product',
+                    value: `\`${dataArray[2]}\``,
                     inline: true
                 },
                 {
-                    name: 'Comprobante',
+                    name: 'Comp',
                     value: `[Click aquí](${dataArray[3]})`,
                     inline: true
                 }
             ])
             .setFooter({
-                text: `UserID: ${dataArray[0]} ・ Referencia: ${dataArray[4]}`
+                text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
             });
 
-        // Crear un field por cada cuenta asignada
-        cuentasAsignadas.forEach((cuenta, index) => {
+        if (cuentasAsignadas && cuentasAsignadas.length > 0) {
+            cuentasAsignadas.forEach((cuenta, index) => {
+                embed.addFields({
+                    name: `Cuenta Asignada ${index + 1}`,
+                    value: `**Nickname:** \`${cuenta.Nickname || 'N/A'}\`, \n**Username:** \`${cuenta.Username || 'N/A' }\`, \n**Password:** ||\`${cuenta.Password || 'N/A'  }\`|| \n**RP Asignado:** \`${cuenta.RPsAsignados || 'N/A'  }\``,
+                    inline: true
+                });
+            });
+        } else {
             embed.addFields({
-                name: `Cuenta Asignada ${index + 1}`,
-                value: `**Nickname:** \`${cuenta.Nickname}\`, \n**Username:** \`${cuenta.Username}\`, \n**Password:** ||\`${cuenta.Password}\`|| \n**RP Asignado:** \`${cuenta.RPsAsignados}\``,
+                name: `Cuenta Asignada`,
+                value: cuentasAsignadas === undefined ? "N/A" : "No hay cuentas asignadas para este pedido.",
                 inline: true
             });
-        });
+        }
+
+
 
         await interaction.update({
             components: [botone],

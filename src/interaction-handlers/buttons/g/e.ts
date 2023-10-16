@@ -37,8 +37,8 @@ export class ButtonHandler extends InteractionHandler {
     public override async parse(interaction: ButtonInteraction) {
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-       //  if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-             if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+         //     if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -77,20 +77,20 @@ export class ButtonHandler extends InteractionHandler {
                     .setThumbnail(user.displayAvatarURL())
                     .addFields([
                         {
-                            name: 'Summoner Name', value: `\`${dataArray[1]}\``, inline: true
+                            name: 'Name', value: `\`${dataArray[1]}\``, inline: true
                         },
                         {
-                            name: 'Producto', value: `\`${dataArray[2]}\` RP`, inline: true
+                            name: 'Product', value: `\`${dataArray[2]}\``, inline: true
                         },
                         {
-                            name: 'Comprobante', value: `[Click aquí](${dataArray[3]})`, inline: true
+                            name: 'Comp', value: `[Click aquí](${dataArray[3]})`, inline: true
                         },
                         {
-                            name: 'Cuentas Usadas', value: `\`${cuentasusadas?.Cuentas_Asignadas}\``, inline: true
+                            name: 'Cuentas', value: `\`${cuentasusadas?.Cuentas_Asignadas}\``, inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[0]} ・ Referencia: ${dataArray[4]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     })
                     .setTimestamp()
             ],
@@ -140,7 +140,7 @@ export class ButtonHandler extends InteractionHandler {
             }
         });
 
-        const formattedSum = await formatNumber(sumOfNumbers);
+        const formattedSum = formatNumber(sumOfNumbers);
 
         const entregados = await this.container.client.channels.fetch(Channels.Entregados) as VoiceChannel
         const rpentregado = await this.container.client.channels.fetch(Channels.RPTotal) as VoiceChannel
@@ -157,7 +157,7 @@ export class ButtonHandler extends InteractionHandler {
         await entregadoslogs.send({
             embeds: [
                 new EmbedBuilder()
-                    .setDescription(`Se ha entregado el pedido de: \`${user.username}\` éxitosamente. ${Emojis.General.Success}`)
+                    .setDescription(`Se ha entregado el pedido de: \`${dataArray[1]}\` éxitosamente. ${Emojis.General.Success}`)
                     .setColor(Colors.Success)
             ]
         }).catch(() => { })
