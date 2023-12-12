@@ -7,8 +7,6 @@ import { Colors as DiscordColors, ActionRowBuilder, ButtonBuilder, ButtonStyle, 
 import { Image, createCanvas, Canvas } from "canvas";
 dotenv.config();
 
-
-
 export interface TextOnImageOptions {
     text: string;
     fontSize: number;
@@ -18,6 +16,7 @@ export interface TextOnImageOptions {
 }
 
 export class Utils {
+
     public static readonly Emojis = {
         General: {
             Success: process.env.SUCCESS_EMOJI,
@@ -40,11 +39,19 @@ export class Utils {
     };
 
     public static readonly Channels = {
-        Pedidos: process.env.PEDIDOS_CHANNEL,
         EntegadosLogs: process.env.ENTREGADOS_CHANNEL,
         Menu: process.env.MENU_CHANNEL,
         Entregados: process.env.ENTREGADOS_VOICE_CHANNEL,
         RPTotal: process.env.RPTOTAL_VOICE_CHANNEL,
+        Staff: {
+            Pedidos_Logs: process.env.PEDIDOS_LOGS,
+            Wild_Cores_Channel: process.env.WILDCORES_CHANNEL,
+            Riot_Points_Channel: process.env.RIOTPOINTS_CHANNEL,
+            Skins_Channel: process.env.SKINS_CHANNEL,
+            Misc_Channel: process.env.MISC_CHANNEL,
+            Artesanias_Channel: process.env.ARTESANIA_CHANNEL,
+            Combos_Channel: process.env.COMBOS_CHANNEL
+        }
     };
 
     public static readonly API = {
@@ -255,7 +262,7 @@ export class Utils {
         const filename = `${Date.now()}.png`;
     
         // Guarda el canvas en un archivo en la carpeta local.
-        const outputPath = path.join(__dirname, './output', filename);
+        const outputPath = path.join(__dirname, '../output', filename);
         const out = fs.createWriteStream(outputPath);
         const stream = canvas.createPNGStream();
         stream.pipe(out);

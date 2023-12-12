@@ -5,7 +5,7 @@ import { Ahri } from "..";
 const { Colors, Channels } = Utils
 
 
-export class PurchaseCommand extends Command {
+export class MenuCommand extends Command {
   public constructor(context: Command.Context, options: Command.Options) {
     super(context, {
       ...options,

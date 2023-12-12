@@ -122,7 +122,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     },
                                     {
                                         name: "Producto",
-                                        value: `\`${selectedOption}\``,
+                                        value: `\`Nitro Boost\``,
                                         inline: true,
                                     },
                                     {
@@ -147,7 +147,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 { disabled: false, author: interaction.user.id },
                                 []
                             );
-                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `Nitro`, `${shortURL}`, `${UniqueID}`,`mc`]
                             );
 
                             await interaction.channel.send({

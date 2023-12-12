@@ -32,17 +32,17 @@ export const build = async (
                     {
                         label: "Skin épica 1350 RP",
                         emoji: "1149419858241532049", // 1
-                        value: "skin1350:HIM",
+                        value: "1350:HIM",
                     },
                     {
                         label: "Skin Legendaria 1820 RP",
                         emoji: "1149420773275095222", // 2
-                        value: "skin1820:HIM",
+                        value: "1820:HIM",
                     },
                     {
                         label: "Skin Definitiva 3250 RP",
                         emoji: "1149420803151122503", // 3
-                        value: "skin3250:HIM",
+                        value: "3250:HIM",
                     },
 
                 )
@@ -63,7 +63,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+          if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
       //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
@@ -102,7 +102,7 @@ export class ShopMenuHandler extends InteractionHandler {
             const opcion = args[0][0];
 
             switch (opcion) {
-                case "skin1350": {
+                case "1350": {
                     await interaction.update({
                         embeds: [
                             new EmbedBuilder()
@@ -145,7 +145,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -155,7 +155,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -237,9 +237,9 @@ export class ShopMenuHandler extends InteractionHandler {
                                         // Cargar la imagen adicional
                                         const imageToDraw = await loadImage(attachmentURL);
                                         const backgroundImage = await loadImage("./assets/bg.png");
-                            
+
                                         const textOptions: TextOnImageOptions = {
-                                            text: skin, 
+                                            text: skin,
                                             fontSize: 50, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
@@ -263,7 +263,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                 },
                                                 {
                                                     name: "Producto",
-                                                    value: `\`${selectedOption}\` RP`,
+                                                    value: `\`Skin Epica\``,
                                                     inline: true,
                                                 },
                                                 {
@@ -292,7 +292,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             { disabled: false, author: interaction.user.id },
                                             []
                                         );
-                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`sk`]
                                         );
 
                                         await msg.edit({
@@ -313,7 +313,7 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
                     break;
 
-                case "skin1820": {
+                case "1820": {
                     await interaction.update({
                         embeds: [
                             new EmbedBuilder()
@@ -356,7 +356,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -366,7 +366,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -448,9 +448,9 @@ export class ShopMenuHandler extends InteractionHandler {
                                         // Cargar la imagen adicional
                                         const imageToDraw = await loadImage(attachmentURL);
                                         const backgroundImage = await loadImage("./assets/bg.png");
-                            
+
                                         const textOptions: TextOnImageOptions = {
-                                            text: skin, 
+                                            text: skin,
                                             fontSize: 50, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
@@ -474,7 +474,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                 },
                                                 {
                                                     name: "Producto",
-                                                    value: `\`${selectedOption}\` RP`,
+                                                    value: `\`Skin Legendaria\``,
                                                     inline: true,
                                                 },
                                                 {
@@ -503,7 +503,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             { disabled: false, author: interaction.user.id },
                                             []
                                         );
-                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`sk`]
                                         );
 
                                         await msg.edit({
@@ -524,36 +524,51 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
                     break;
 
-                    case "skin3250": {
-                        await interaction.update({
-                            embeds: [
-                                new EmbedBuilder()
-                                    .setAuthor({
-                                        name: this.container.client.user.username,
-                                        iconURL: this.container.client.user.displayAvatarURL(),
-                                    })
-                                    .setDescription(
-                                        "Has seleccionado `Skin Definitiva de 3250 RP`. Ahora por favor escribe tu nombre de invocador."
-                                    )
-                                    .setColor(Colors.Success),
-                            ],
-                            components: [],
-                        });
-    
-                        const nameCollector = new MessageCollector(interaction.channel, {
-                            filter: (msg) => msg.author.id === interaction.user.id,
-                            max: 1,
-                            time: 120000,
-                        });
-    
-                        let name = "";
-                        nameCollector.on("collect", (message) => {
-                            name = message.content;
-                        });
-    
-                        nameCollector.on("end", async (collected, reason) => {
-                            if (reason === "time") {
-                                interaction.channel.send({
+                case "3250": {
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Has seleccionado `Skin Definitiva de 3250 RP`. Ahora por favor escribe tu nombre de invocador."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [],
+                    });
+
+                    const nameCollector = new MessageCollector(interaction.channel, {
+                        filter: (msg) => msg.author.id === interaction.user.id,
+                        max: 1,
+                        time: 120000,
+                    });
+
+                    let name = "";
+                    nameCollector.on("collect", (message) => {
+                        name = message.content;
+                    });
+
+                    nameCollector.on("end", async (collected, reason) => {
+                        if (reason === "time") {
+                            interaction.channel.send({
+                                embeds: [
+                                    new EmbedBuilder()
+                                        .setAuthor({
+                                            name: `${Ahri.user.username}`,
+                                            iconURL: Ahri.user.displayAvatarURL(),
+                                        })
+                                        .setColor(Colors.Error)
+                                        .setDescription(
+                                            `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
+                                        ),
+                                ],
+                            });
+                        } else {
+                            if (name.length > 22) {
+                                await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
                                             .setAuthor({
@@ -562,13 +577,41 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
-                            } else {
-                                if (name.length > 16) {
-                                    await interaction.channel.send({
+                                return;
+                            }
+
+                            const SkinEmbed = new EmbedBuilder()
+                                .setAuthor({
+                                    name: `${interaction.user.username}`,
+                                    iconURL: interaction.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, escribe por favor el nombre de la Skin que deseas adquirir.`
+                                )
+                                .setColor(Colors.Success);
+
+                            await interaction.channel.send({
+                                embeds: [SkinEmbed],
+                            });
+
+                            const SkinCollector = new MessageCollector(interaction.channel, {
+                                filter: (msg) => msg.author.id === interaction.user.id,
+                                max: 1,
+                                time: 120000,
+                            });
+
+                            let skin = "";
+                            SkinCollector.on("collect", (message) => {
+                                skin = message.content;
+                            });
+
+                            SkinCollector.on("end", async (collected, reason) => {
+                                if (reason === "time") {
+                                    interaction.channel.send({
                                         embeds: [
                                             new EmbedBuilder()
                                                 .setAuthor({
@@ -577,89 +620,46 @@ export class ShopMenuHandler extends InteractionHandler {
                                                 })
                                                 .setColor(Colors.Error)
                                                 .setDescription(
-                                                    `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                    `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
                                                 ),
                                         ],
                                     });
-                                    return;
                                 }
-    
-                                const SkinEmbed = new EmbedBuilder()
-                                    .setAuthor({
-                                        name: `${interaction.user.username}`,
-                                        iconURL: interaction.user.displayAvatarURL(),
-                                    })
-                                    .setDescription(
-                                        `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, escribe por favor el nombre de la Skin que deseas adquirir.`
-                                    )
-                                    .setColor(Colors.Success);
-    
-                                await interaction.channel.send({
-                                    embeds: [SkinEmbed],
-                                });
-    
-                                const SkinCollector = new MessageCollector(interaction.channel, {
-                                    filter: (msg) => msg.author.id === interaction.user.id,
-                                    max: 1,
-                                    time: 120000,
-                                });
-    
-                                let skin = "";
-                                SkinCollector.on("collect", (message) => {
-                                    skin = message.content;
-                                });
-    
-                                SkinCollector.on("end", async (collected, reason) => {
-                                    if (reason === "time") {
-                                        interaction.channel.send({
-                                            embeds: [
-                                                new EmbedBuilder()
-                                                    .setAuthor({
-                                                        name: `${Ahri.user.username}`,
-                                                        iconURL: Ahri.user.displayAvatarURL(),
-                                                    })
-                                                    .setColor(Colors.Error)
-                                                    .setDescription(
-                                                        `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
-                                                    ),
-                                            ],
-                                        });
-                                    }
-                                    else {
-                                        const NameEmbed = new EmbedBuilder()
-                                            .setAuthor({
-                                                name: `${interaction.user.username}`,
-                                                iconURL: interaction.user.displayAvatarURL(),
-                                            })
-                                            .setDescription(
-                                                `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
-                                            )
-                                            .setColor(Colors.Success);
-    
-                                        await interaction.channel.send({
-                                            embeds: [NameEmbed],
-                                        });
-                                    }
-                                });
-    
-                                const imageCollector = new MessageCollector(interaction.channel, {
-                                    filter: (msg) =>
-                                        msg.author.id === interaction.user.id && msg.attachments.size > 0,
-                                    max: 1
-                                });
-    
-                                imageCollector.on("collect", async (message) => {
-                                    const attachment = message.attachments.first();
-                                    const attachmentURL = attachment?.url;
-                                    const attachmentName = attachment?.name;
-    
-    
-                                    await interaction.channel.send({ content: `${Emojis.Misc.Loading}` }).then(async (msg) => {
-                                        try {
-                                            // Cargar la imagen adicional
+                                else {
+                                    const NameEmbed = new EmbedBuilder()
+                                        .setAuthor({
+                                            name: `${interaction.user.username}`,
+                                            iconURL: interaction.user.displayAvatarURL(),
+                                        })
+                                        .setDescription(
+                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                        )
+                                        .setColor(Colors.Success);
+
+                                    await interaction.channel.send({
+                                        embeds: [NameEmbed],
+                                    });
+                                }
+                            });
+
+                            const imageCollector = new MessageCollector(interaction.channel, {
+                                filter: (msg) =>
+                                    msg.author.id === interaction.user.id && msg.attachments.size > 0,
+                                max: 1
+                            });
+
+                            imageCollector.on("collect", async (message) => {
+                                const attachment = message.attachments.first();
+                                const attachmentURL = attachment?.url;
+                                const attachmentName = attachment?.name;
+
+
+                                await interaction.channel.send({ content: `${Emojis.Misc.Loading}` }).then(async (msg) => {
+                                    try {
+                                        // Cargar la imagen adicional
                                         const imageToDraw = await loadImage(attachmentURL);
                                         const backgroundImage = await loadImage("./assets/bg.png");
-                            
+
                                         const textOptions: TextOnImageOptions = {
                                             text: `${name}\n${skin}`,
                                             fontSize: 50, // El tamaño de la fuente.
@@ -670,70 +670,70 @@ export class ShopMenuHandler extends InteractionHandler {
                                         const localImagePath = await drawTextOnImage(backgroundImage, textOptions, imageToDraw); // Pasa la imagen de fondo como primer argumento
                                         const publicImageURL = await uploadImageToCloudinary(localImagePath);
                                         const shortURL = await shortenURL(publicImageURL);
-    
-                                            const AttachmentEmbed = new EmbedBuilder()
-                                                .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
-                                                .setAuthor({
-                                                    name: `${interaction.user.username}`,
-                                                    iconURL: interaction.user.displayAvatarURL(),
-                                                })
-                                                .addFields(
-                                                    {
-                                                        name: "Nombre de invocador",
-                                                        value: `\`${name}\``,
-                                                        inline: true,
-                                                    },
-                                                    {
-                                                        name: "Producto",
-                                                        value: `\`${selectedOption}\` RP`,
-                                                        inline: true,
-                                                    },
-                                                    {
-                                                        name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
-                                                    },
-                                                    {
-                                                        name: 'Skin A Comprar', value: `${skin}`, inline: true
-                                                    }
-                                                )
-                                                .setDescription(
-                                                    `Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`
-                                                )
-                                                .setColor(Colors.Success)
-                                                .setImage(publicImageURL); // Aquí usamos la URL pública de la imagen cargada en ImgBB.
-    
-                                            const botone = new ActionRowBuilder<ButtonBuilder>();
-                                            const module1 = await import(
-                                                "../../interaction-handlers/buttons/g/c"
-                                            );
-                                            const module2 = await import(
-                                                "../../interaction-handlers/buttons/g/a"
-                                            );
-    
-                                            await module1.build(
-                                                botone,
-                                                { disabled: false, author: interaction.user.id },
-                                                []
-                                            );
-                                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
-                                            );
-    
-                                            await msg.edit({
-                                                content: '',
-                                                embeds: [AttachmentEmbed],
-                                                components: [botone],
-                                            });
-                                        } catch (error) {
-                                            Log.error('Error al dibujar texto en la imagen:', error);
-                                        }
-                                    });
-    
+
+                                        const AttachmentEmbed = new EmbedBuilder()
+                                            .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
+                                            .setAuthor({
+                                                name: `${interaction.user.username}`,
+                                                iconURL: interaction.user.displayAvatarURL(),
+                                            })
+                                            .addFields(
+                                                {
+                                                    name: "Nombre de invocador",
+                                                    value: `\`${name}\``,
+                                                    inline: true,
+                                                },
+                                                {
+                                                    name: "Producto",
+                                                    value: `\`Skin Definitva\``,
+                                                    inline: true,
+                                                },
+                                                {
+                                                    name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
+                                                },
+                                                {
+                                                    name: 'Skin A Comprar', value: `${skin}`, inline: true
+                                                }
+                                            )
+                                            .setDescription(
+                                                `Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`
+                                            )
+                                            .setColor(Colors.Success)
+                                            .setImage(publicImageURL); // Aquí usamos la URL pública de la imagen cargada en ImgBB.
+
+                                        const botone = new ActionRowBuilder<ButtonBuilder>();
+                                        const module1 = await import(
+                                            "../../interaction-handlers/buttons/g/c"
+                                        );
+                                        const module2 = await import(
+                                            "../../interaction-handlers/buttons/g/a"
+                                        );
+
+                                        await module1.build(
+                                            botone,
+                                            { disabled: false, author: interaction.user.id },
+                                            []
+                                        );
+                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`sk`]
+                                        );
+
+                                        await msg.edit({
+                                            content: '',
+                                            embeds: [AttachmentEmbed],
+                                            components: [botone],
+                                        });
+                                    } catch (error) {
+                                        Log.error('Error al dibujar texto en la imagen:', error);
+                                    }
                                 });
-    
-                            }
-                        });
-    
-                    }
-                        break;
+
+                            });
+
+                        }
+                    });
+
+                }
+                    break;
             }
 
 

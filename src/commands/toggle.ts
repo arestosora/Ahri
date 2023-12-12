@@ -4,7 +4,7 @@ import { Utils } from "../utils/util";
 const { Emojis } = Utils;
 
 
-export class PurchaseCommand extends Command {
+export class ToggleCommand extends Command {
   public constructor(context: Command.Context, options: Command.Options) {
     super(context, {
       ...options,

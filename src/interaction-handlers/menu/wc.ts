@@ -28,14 +28,14 @@ export const build = async (
                 .setDisabled(options.disabled)
                 .setOptions(
                     {
-                        label: "500 Wild Cores",
-                        emoji: "1149424355353313420", // 1
-                        value: "500WC:HIM",
-                    },
-                    {
                         label: "1000 Wild Cores",
                         emoji: "1149424355353313420", // 1
                         value: "1000WC:HIM",
+                    },
+                    {
+                        label: "2000 Wild Cores",
+                        emoji: "1149424355353313420", // 1
+                        value: "2000WC:HIM",
                     },
                     {
                         label: "3000 Wild Cores",
@@ -72,8 +72,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-       //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+      //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -296,7 +296,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                         },
                                                         {
                                                             name: "Producto",
-                                                            value: `\`${selectedOption}\` WC`,
+                                                            value: `\`10.000\` WC`,
                                                             inline: true,
                                                         },
                                                         {
@@ -325,7 +325,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                     { disabled: false, author: interaction.user.id },
                                                     []
                                                 );
-                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]);
+                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`wc`]);
 
                                                 await msg.edit({
                                                     content: '',
@@ -526,7 +526,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                         },
                                                         {
                                                             name: "Producto",
-                                                            value: `\`${selectedOption}\` WC`,
+                                                            value: `\`5.000\` WC`,
                                                             inline: true,
                                                         },
                                                         {
@@ -555,7 +555,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                     { disabled: false, author: interaction.user.id },
                                                     []
                                                 );
-                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${'a'}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]);
+                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`wc`]);
 
                                                 await msg.edit({
                                                     content: '',
@@ -756,7 +756,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                         },
                                                         {
                                                             name: "Producto",
-                                                            value: `\`${selectedOption}\` WC`,
+                                                            value: `\`3.000\` WC`,
                                                             inline: true,
                                                         },
                                                         {
@@ -785,7 +785,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                     { disabled: false, author: interaction.user.id },
                                                     []
                                                 );
-                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${'a'}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]);
+                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`wc`]);
 
                                                 await msg.edit({
                                                     content: '',
@@ -986,7 +986,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                         },
                                                         {
                                                             name: "Producto",
-                                                            value: `\`${selectedOption}\` WC`,
+                                                            value: `\`1.000\` WC`,
                                                             inline: true,
                                                         },
                                                         {
@@ -1015,7 +1015,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                     { disabled: false, author: interaction.user.id },
                                                     []
                                                 );
-                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${'a'}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]);
+                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`wc`]);
 
                                                 await msg.edit({
                                                     content: '',
@@ -1033,7 +1033,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
                     break;
-                case "500WC": {
+                case "2000WC": {
                     await interaction.update({
                         embeds: [
                             new EmbedBuilder()
@@ -1042,7 +1042,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado `500 Wild Cores`. Para poder gestionar tu pedido se requiere el acceso a tu cuenta de WildRift, así que primeramente escribe el método de inicio de sesión."
+                                    "Has seleccionado `2000 Wild Cores`. Para poder gestionar tu pedido se requiere el acceso a tu cuenta de WildRift, así que primeramente escribe el método de inicio de sesión."
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1216,7 +1216,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                         },
                                                         {
                                                             name: "Producto",
-                                                            value: `\`${selectedOption}\` WC`,
+                                                            value: `\`2.000\` WC`,
                                                             inline: true,
                                                         },
                                                         {
@@ -1245,7 +1245,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                                     { disabled: false, author: interaction.user.id },
                                                     []
                                                 );
-                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${'a'}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]);
+                                                await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`wc`]);
 
                                                 await msg.edit({
                                                     content: '',

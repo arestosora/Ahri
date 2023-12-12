@@ -28,7 +28,7 @@ export const build = async (
                 .setOptions(
                     {
                         label: "Riot Points",
-                        emoji: "1149422207492169810", // 1
+                        emoji: "1153831080906985662", // 1
                         value: "RP:HIM",
                     },
                     {
@@ -47,16 +47,20 @@ export const build = async (
                         value: "capsulas:HIM",
                     },
                     {
-                        label: "Discord Nitro Ultimate",
-                        emoji: "1153438711732781086", // 1
-                        value: "nitro:HIM",
+                        label: "Combos",
+                        emoji: "📦", // 1
+                        value: "combos:HIM",
                     },
                     {
                         label: "Wild Cores LoL: Wild Rift",
                         emoji: "1149424355353313420", // 1
                         value: "wc:HIM",
                     },
-
+                    {
+                        label: "Discord Nitro Boost",
+                        emoji: "1153438711732781086", // 1
+                        value: "nitro:HIM",
+                    },
                 )
         );
         resolve(true);
@@ -75,8 +79,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-       // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+           if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+      //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -130,7 +134,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
 
-                break;
+                    break;
 
                 case "skins": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
@@ -152,7 +156,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
 
-                break;
+                    break;
 
                 case "artesania": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
@@ -174,7 +178,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
 
-                break;
+                    break;
 
                 case "capsulas": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
@@ -196,7 +200,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
 
-                break;
+                    break;
 
                 case "nitro": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
@@ -218,7 +222,7 @@ export class ShopMenuHandler extends InteractionHandler {
                     });
                 }
 
-                break;
+                    break;
 
                 case "wc": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
@@ -239,6 +243,27 @@ export class ShopMenuHandler extends InteractionHandler {
                         components: [row],
                     });
                 }
+                    break;
+                case "combos": {
+                    const row = new ActionRowBuilder<StringSelectMenuBuilder>
+                    const menu = await import('./comb');
+                    await menu.build(row, { disabled: false, author: interaction.user.id }, [])
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Parece que has seleccionado el producto \`Combos League of Legends\` por favor selecciona el combo que deseas Adquirir."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [row],
+                    });
+                }
+                    break;
             }
 
         } catch (error) {
@@ -253,7 +278,7 @@ export class ShopMenuHandler extends InteractionHandler {
                         .setColor(Colors.Error)
                         .setDescription(
                             `${Emojis.General.Error} Ha ocurrido un error al realizar tu pedido, inténtalo de nuevo. En caso de que el error persista, contacta con los administradores.`
-                    ),
+                        ),
                 ],
             });
         }

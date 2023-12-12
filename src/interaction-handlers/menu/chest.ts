@@ -65,8 +65,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-       if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-         //     if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+        // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -149,7 +149,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -159,7 +159,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -171,7 +171,8 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596> \`3105947529\`, **Bancolombia** <:bancolombia:1134763479925010518> \`91260328099\` , **PayPal** <:paypal:1134763669855678546>. https://bit.ly/RPHUBGLOBAL, BinanceID <:binance:1135310399084965923> \`114799953\`
+ `
                                 )
                                 .setColor(Colors.Success);
 
@@ -204,7 +205,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             },
                                             {
                                                 name: "Producto",
-                                                value: `\`${selectedOption}\` RP`,
+                                                value: `\`1 Cofre\``,
                                                 inline: true,
                                             },
                                             {
@@ -231,7 +232,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `1 Cofre`, `${shortURL}`, `${UniqueID}`, `ca`]
                                     );
 
                                     await interaction.channel.send({
@@ -290,7 +291,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -300,7 +301,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -312,7 +313,8 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596> \`3105947529\`, **Bancolombia** <:bancolombia:1134763479925010518> \`91260328099\` , **PayPal** <:paypal:1134763669855678546>. https://bit.ly/RPHUBGLOBAL, BinanceID <:binance:1135310399084965923> \`114799953\`
+ `
                                 )
                                 .setColor(Colors.Success);
 
@@ -345,7 +347,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             },
                                             {
                                                 name: "Producto",
-                                                value: `\`${selectedOption}\` RP`,
+                                                value: `\`5 Cofres\``,
                                                 inline: true,
                                             },
                                             {
@@ -372,7 +374,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `5 Cofres`, `${shortURL}`, `${UniqueID}`, `ca`]
                                     );
 
                                     await interaction.channel.send({
@@ -431,7 +433,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -441,7 +443,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -453,7 +455,8 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: interaction.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596> \`3105947529\`, **Bancolombia** <:bancolombia:1134763479925010518> \`91260328099\` , **PayPal** <:paypal:1134763669855678546>. https://bit.ly/RPHUBGLOBAL, BinanceID <:binance:1135310399084965923> \`114799953\`
+ `
                                 )
                                 .setColor(Colors.Success);
 
@@ -486,7 +489,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             },
                                             {
                                                 name: "Producto",
-                                                value: `\`${selectedOption}\` RP`,
+                                                value: `\`11 Cofres\` RP`,
                                                 inline: true,
                                             },
                                             {
@@ -511,7 +514,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `11 Cofres`, `${shortURL}`, `${UniqueID}`,`ca`]
                                     );
 
                                     await interaction.channel.send({
@@ -528,36 +531,51 @@ export class ShopMenuHandler extends InteractionHandler {
                 }
                     break;
 
-                    case "pase": {
-                        await interaction.update({
-                            embeds: [
-                                new EmbedBuilder()
-                                    .setAuthor({
-                                        name: this.container.client.user.username,
-                                        iconURL: this.container.client.user.displayAvatarURL(),
-                                    })
-                                    .setDescription(
-                                        "Has seleccionado el **Pase de League of Legends**. Ahora por favor escribe tu nombre de invocador."
-                                    )
-                                    .setColor(Colors.Success),
-                            ],
-                            components: [],
-                        });
-    
-                        const nameCollector = new MessageCollector(interaction.channel, {
-                            filter: (msg) => msg.author.id === interaction.user.id,
-                            max: 1,
-                            time: 120000,
-                        });
-    
-                        let name = "";
-                        nameCollector.on("collect", (message) => {
-                            name = message.content;
-                        });
-    
-                        nameCollector.on("end", async (collected, reason) => {
-                            if (reason === "time") {
-                                interaction.channel.send({
+                case "pase": {
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Has seleccionado el **Pase de League of Legends**. Ahora por favor escribe tu nombre de invocador."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [],
+                    });
+
+                    const nameCollector = new MessageCollector(interaction.channel, {
+                        filter: (msg) => msg.author.id === interaction.user.id,
+                        max: 1,
+                        time: 120000,
+                    });
+
+                    let name = "";
+                    nameCollector.on("collect", (message) => {
+                        name = message.content;
+                    });
+
+                    nameCollector.on("end", async (collected, reason) => {
+                        if (reason === "time") {
+                            interaction.channel.send({
+                                embeds: [
+                                    new EmbedBuilder()
+                                        .setAuthor({
+                                            name: `${Ahri.user.username}`,
+                                            iconURL: Ahri.user.displayAvatarURL(),
+                                        })
+                                        .setColor(Colors.Error)
+                                        .setDescription(
+                                            `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
+                                        ),
+                                ],
+                            });
+                        } else {
+                            if (name.length > 22) {
+                                await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
                                             .setAuthor({
@@ -566,107 +584,93 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `Se ha acabado el tiempo para responder. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
-                            } else {
-                                if (name.length > 16) {
-                                    await interaction.channel.send({
-                                        embeds: [
-                                            new EmbedBuilder()
-                                                .setAuthor({
-                                                    name: `${Ahri.user.username}`,
-                                                    iconURL: Ahri.user.displayAvatarURL(),
-                                                })
-                                                .setColor(Colors.Error)
-                                                .setDescription(
-                                                    `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
-                                                ),
-                                        ],
-                                    });
-                                    return;
-                                }
-                                const NameEmbed = new EmbedBuilder()
-                                    .setAuthor({
-                                        name: `${interaction.user.username}`,
-                                        iconURL: interaction.user.displayAvatarURL(),
-                                    })
-                                    .setDescription(
-                                        `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
-                                    )
-                                    .setColor(Colors.Success);
-    
-                                await interaction.channel.send({
-                                    embeds: [NameEmbed],
-                                });
-    
-                                const imageCollector = new MessageCollector(interaction.channel, {
-                                    filter: (msg) =>
-                                        msg.author.id === interaction.user.id && msg.attachments.size > 0,
-                                    max: 1
-                                });
-    
-                                imageCollector.on("collect", async (message) => {
-                                    const attachment = message.attachments.first();
-                                    const attachmentURL = attachment?.url;
-                                    const attachmentName = attachment?.name;
-                                    await shortenURL(attachmentURL).then(async (shortURL) => {
-                                        const AttachmentEmbed = new EmbedBuilder()
-                                            .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
-                                            .setAuthor({
-                                                name: `${interaction.user.username}`,
-                                                iconURL: interaction.user.displayAvatarURL(),
-                                            })
-                                            .addFields(
-                                                {
-                                                    name: "Nombre de invocador",
-                                                    value: `\`${name}\``,
-                                                    inline: true,
-                                                },
-                                                {
-                                                    name: "Producto",
-                                                    value: `\`${selectedOption}\``,
-                                                    inline: true,
-                                                },
-                                                {
-                                                    name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
-                                                }
-    
-                                            )
-                                            .setDescription(`Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`)
-                                            .setColor(Colors.Success)
-                                            .setImage(attachmentURL);
-    
-                                        const botone = new ActionRowBuilder<ButtonBuilder>();
-                                        const module1 = await import(
-                                            "../buttons/g/c"
-                                        );
-                                        const module2 = await import(
-                                            "../buttons/g/a"
-                                        );
-    
-                                        await module1.build(
-                                            botone,
-                                            { disabled: false, author: interaction.user.id },
-                                            []
-                                        );
-                                        await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
-                                        );
-    
-                                        await interaction.channel.send({
-                                            embeds: [AttachmentEmbed],
-                                            components: [botone],
-                                        });
-                                    }).catch((error) => {
-                                        Log.error('Error al acortar la URL:', error);
-                                    });
-    
-                                });
+                                return;
                             }
-                        });
-                    }
-                        break;
+                            const NameEmbed = new EmbedBuilder()
+                                .setAuthor({
+                                    name: `${interaction.user.username}`,
+                                    iconURL: interaction.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    `Perfecto, tu nombre de invocador es \`${name}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596> \`3105947529\`, **Bancolombia** <:bancolombia:1134763479925010518> \`91260328099\` , **PayPal** <:paypal:1134763669855678546>. https://bit.ly/RPHUBGLOBAL, BinanceID <:binance:1135310399084965923> \`114799953\`
+ `
+                                )
+                                .setColor(Colors.Success);
+
+                            await interaction.channel.send({
+                                embeds: [NameEmbed],
+                            });
+
+                            const imageCollector = new MessageCollector(interaction.channel, {
+                                filter: (msg) =>
+                                    msg.author.id === interaction.user.id && msg.attachments.size > 0,
+                                max: 1
+                            });
+
+                            imageCollector.on("collect", async (message) => {
+                                const attachment = message.attachments.first();
+                                const attachmentURL = attachment?.url;
+                                const attachmentName = attachment?.name;
+                                await shortenURL(attachmentURL).then(async (shortURL) => {
+                                    const AttachmentEmbed = new EmbedBuilder()
+                                        .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
+                                        .setAuthor({
+                                            name: `${interaction.user.username}`,
+                                            iconURL: interaction.user.displayAvatarURL(),
+                                        })
+                                        .addFields(
+                                            {
+                                                name: "Nombre de invocador",
+                                                value: `\`${name}\``,
+                                                inline: true,
+                                            },
+                                            {
+                                                name: "Producto",
+                                                value: `\`Pase LoL\``,
+                                                inline: true,
+                                            },
+                                            {
+                                                name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
+                                            }
+
+                                        )
+                                        .setDescription(`Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`)
+                                        .setColor(Colors.Success)
+                                        .setImage(attachmentURL);
+
+                                    const botone = new ActionRowBuilder<ButtonBuilder>();
+                                    const module1 = await import(
+                                        "../buttons/g/c"
+                                    );
+                                    const module2 = await import(
+                                        "../buttons/g/a"
+                                    );
+
+                                    await module1.build(
+                                        botone,
+                                        { disabled: false, author: interaction.user.id },
+                                        []
+                                    );
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `Pase`, `${shortURL}`, `${UniqueID}`,`ca`]
+                                    );
+
+                                    await interaction.channel.send({
+                                        embeds: [AttachmentEmbed],
+                                        components: [botone],
+                                    });
+                                }).catch((error) => {
+                                    Log.error('Error al acortar la URL:', error);
+                                });
+
+                            });
+                        }
+                    });
+                }
+                    break;
             }
 
         } catch (error) {

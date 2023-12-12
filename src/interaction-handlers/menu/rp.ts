@@ -28,57 +28,57 @@ export const build = async (
                 .setOptions(
                     {
                         label: "765 RP",
-                        emoji: "1134181246029807637", // 1
+                        emoji: "1153831080906985662", // 1
                         value: "765:HIM",
                     },
                     {
                         label: "1530 RP",
-                        emoji: "1134181246029807637", // 2
+                        emoji: "1153831080906985662", // 2
                         value: "1530:HIM",
                     },
                     {
                         label: "2295 RP",
-                        emoji: "1134181246029807637", // 3
+                        emoji: "1153831080906985662", // 3
                         value: "2295:HIM",
                     },
                     {
                         label: "3060 RP",
-                        emoji: "1134181246029807637", // 4
+                        emoji: "1153831080906985662", // 4
                         value: "3060:HIM",
                     },
                     {
                         label: "3825 RP",
-                        emoji: "1134181246029807637", // 5
+                        emoji: "1153831080906985662", // 5
                         value: "3825:HIM",
                     },
                     {
                         label: "4590 RP",
-                        emoji: "1134181246029807637", // 6
+                        emoji: "1153831080906985662", // 6
                         value: "4590:HIM",
                     },
                     {
                         label: "5355 RP",
-                        emoji: "1134181246029807637", // 7
+                        emoji: "1153831080906985662", // 7
                         value: "5355:HIM",
                     },
                     {
                         label: "6120 RP",
-                        emoji: "1134181246029807637", // 8
+                        emoji: "1153831080906985662", // 8
                         value: "6120:HIM",
                     },
                     {
                         label: "6885 RP",
-                        emoji: "1134181246029807637", // 9
+                        emoji: "1153831080906985662", // 9
                         value: "6885:HIM",
                     },
                     {
                         label: "7650 RP",
-                        emoji: "1134181246029807637", // 10
+                        emoji: "1153831080906985662", // 10
                         value: "7650:HIM",
                     },
                     {
                         label: "8415 RP",
-                        emoji: "1134181246029807637", // 11
+                        emoji: "1153831080906985662", // 11
                         value: "8415:HIM",
                     }, 
 
@@ -100,8 +100,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-         //    if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+       if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+       //       if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -180,7 +180,7 @@ export class ShopMenuHandler extends InteractionHandler {
                           ],
                         });
                       } else {
-                        if (name.length > 16) {
+                        if (name.length > 22) {
                           await interaction.channel.send({
                             embeds: [
                               new EmbedBuilder()
@@ -190,7 +190,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 })
                                 .setColor(Colors.Error)
                                 .setDescription(
-                                  `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                  `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                 ),
                             ],
                           });
@@ -262,7 +262,7 @@ export class ShopMenuHandler extends InteractionHandler {
                               { disabled: false, author: interaction.user.id },
                               []
                             );
-                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                             );
           
                             await interaction.channel.send({
@@ -324,7 +324,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -334,7 +334,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -406,7 +406,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -466,7 +466,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -476,7 +476,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -548,7 +548,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -611,7 +611,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -621,7 +621,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -692,7 +692,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -754,7 +754,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -764,7 +764,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -836,7 +836,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -898,7 +898,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -908,7 +908,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -980,7 +980,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -1042,7 +1042,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -1052,7 +1052,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -1124,7 +1124,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -1186,7 +1186,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -1196,7 +1196,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -1268,7 +1268,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -1330,7 +1330,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -1340,7 +1340,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -1411,7 +1411,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -1473,7 +1473,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -1483,7 +1483,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -1554,7 +1554,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
@@ -1616,7 +1616,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                 ],
                             });
                         } else {
-                            if (name.length > 16) {
+                            if (name.length > 22) {
                                 await interaction.channel.send({
                                     embeds: [
                                         new EmbedBuilder()
@@ -1626,7 +1626,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             })
                                             .setColor(Colors.Error)
                                             .setDescription(
-                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 16 caracteres. Inténtalo de nuevo.`
+                                                `${Emojis.General.Error} El nombre de invocador no puede tener más de 22 caracteres. Inténtalo de nuevo.`
                                             ),
                                     ],
                                 });
@@ -1698,7 +1698,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`,`rp`]
                                     );
 
                                     await interaction.channel.send({
