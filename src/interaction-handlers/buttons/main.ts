@@ -1,4 +1,4 @@
-import { InteractionHandler, InteractionHandlerTypes, PieceContext } from '@sapphire/framework';
+import { InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework';
 import { EmbedBuilder, type ButtonInteraction, ActionRowBuilder, StringSelectMenuBuilder } from 'discord.js';
 import { Utils } from '../../utils/util';
 const { Emojis, Colors } = Utils
@@ -7,12 +7,12 @@ import { AhriLogger } from '../../structures/Logger';
 const AhriLog = new AhriLogger();
 
 export class MainButton extends InteractionHandler {
-    public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
-        super(ctx, {
-            ...options,
-            interactionHandlerType: InteractionHandlerTypes.Button
-        });
-    }
+  public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.Button
+    });
+  }
 
     public override parse(interaction: ButtonInteraction) {
         if (interaction.customId !== 'shop:pedido') return this.none();

@@ -1,4 +1,4 @@
-import { InteractionHandler, InteractionHandlerTypes, PieceContext } from '@sapphire/framework';
+import { InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework';
 import { EmbedBuilder, Emoji, TextChannel, User } from 'discord.js';
 import { ActionRowBuilder, ButtonInteraction, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Utils } from '../../../utils/util';
@@ -23,7 +23,7 @@ export const build = async (actionRowBuilder: ActionRowBuilder, options: options
     })
 };
 export class ButtonHandler extends InteractionHandler {
-    public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
+    public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
         super(ctx, {
             ...options,
             interactionHandlerType: InteractionHandlerTypes.Button
@@ -34,7 +34,7 @@ export class ButtonHandler extends InteractionHandler {
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-       //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+            //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -53,7 +53,7 @@ export class ButtonHandler extends InteractionHandler {
     public async run(interaction: ButtonInteraction) {
 
         const dataArray = interaction.customId.split(/\_+/g)[2].split(/\,+/g)
-        const user = await this.container.client.users.fetch(dataArray[1]) as User
+        const user = await this.container.client.users.fetch(dataArray[0]) as User
 
         const botone = new ActionRowBuilder<ButtonBuilder>
         const module1 = await import('./e')
@@ -88,7 +88,7 @@ export class ButtonHandler extends InteractionHandler {
                         newEstado = 'No Disponible';
                     }
 
-                    switch (dataArray[0]) {
+                    switch (dataArray[5]) {
                         case "co": {
                             await Database.cuentasCombo.update({
                                 where: { Username: cuenta.Username },
@@ -309,22 +309,22 @@ export class ButtonHandler extends InteractionHandler {
                     .addFields([
                         {
                             name: 'Name',
-                            value: `\`${dataArray[2]}\``,
+                            value: `\`${dataArray[1]}\``,
                             inline: true
                         },
                         {
                             name: 'Product',
-                            value: `\`${dataArray[3]}\``,
+                            value: `\`${dataArray[2]}\``,
                             inline: true
                         },
                         {
                             name: 'Comp',
-                            value: `[Click aquí](${dataArray[4]})`,
+                            value: `[Click aquí](${dataArray[3]})`,
                             inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[1]} ・ Ref: ${dataArray[5]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     });
 
                 if (cuentasAsignadas && cuentasAsignadas.length > 0) {
@@ -429,22 +429,22 @@ export class ButtonHandler extends InteractionHandler {
                     .addFields([
                         {
                             name: 'Name',
-                            value: `\`${dataArray[2]}\``,
+                            value: `\`${dataArray[1]}\``,
                             inline: true
                         },
                         {
                             name: 'Product',
-                            value: `\`${dataArray[3]}\``,
+                            value: `\`${dataArray[2]}\``,
                             inline: true
                         },
                         {
                             name: 'Comp',
-                            value: `[Click aquí](${dataArray[4]})`,
+                            value: `[Click aquí](${dataArray[3]})`,
                             inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[1]} ・ Ref: ${dataArray[5]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     });
 
                 if (cuentasAsignadas && cuentasAsignadas.length > 0) {
@@ -547,22 +547,22 @@ export class ButtonHandler extends InteractionHandler {
                     .addFields([
                         {
                             name: 'Name',
-                            value: `\`${dataArray[2]}\``,
+                            value: `\`${dataArray[1]}\``,
                             inline: true
                         },
                         {
                             name: 'Product',
-                            value: `\`${dataArray[3]}\``,
+                            value: `\`${dataArray[2]}\``,
                             inline: true
                         },
                         {
                             name: 'Comp',
-                            value: `[Click aquí](${dataArray[4]})`,
+                            value: `[Click aquí](${dataArray[3]})`,
                             inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[1]} ・ Ref: ${dataArray[5]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     });
 
                 if (cuentasAsignadas && cuentasAsignadas.length > 0) {
@@ -675,22 +675,22 @@ export class ButtonHandler extends InteractionHandler {
                     .addFields([
                         {
                             name: 'Name',
-                            value: `\`${dataArray[2]}\``,
+                            value: `\`${dataArray[1]}\``,
                             inline: true
                         },
                         {
                             name: 'Product',
-                            value: `\`${dataArray[3]}\``,
+                            value: `\`${dataArray[2]}\``,
                             inline: true
                         },
                         {
                             name: 'Comp',
-                            value: `[Click aquí](${dataArray[4]})`,
+                            value: `[Click aquí](${dataArray[3]})`,
                             inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[1]} ・ Ref: ${dataArray[5]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     });
 
                 if (cuentasAsignadas && cuentasAsignadas.length > 0) {
@@ -798,22 +798,22 @@ export class ButtonHandler extends InteractionHandler {
                     .addFields([
                         {
                             name: 'Name',
-                            value: `\`${dataArray[2]}\``,
+                            value: `\`${dataArray[1]}\``,
                             inline: true
                         },
                         {
                             name: 'Product',
-                            value: `\` Skin ${dataArray[3]} RP\``,
+                            value: `\` Skin ${dataArray[2]} RP\``,
                             inline: true
                         },
                         {
                             name: 'Comp',
-                            value: `[Click aquí](${dataArray[4]})`,
+                            value: `[Click aquí](${dataArray[3]})`,
                             inline: true
                         }
                     ])
                     .setFooter({
-                        text: `UserID: ${dataArray[1]} ・ Ref: ${dataArray[5]}`
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
                     });
 
                 if (cuentasAsignadas && cuentasAsignadas.length > 0) {

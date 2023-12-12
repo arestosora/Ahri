@@ -1,4 +1,4 @@
-import { InteractionHandler, InteractionHandlerTypes, PieceContext } from '@sapphire/framework';
+import { InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework';
 import { EmbedBuilder, TextChannel, User, VoiceChannel } from 'discord.js';
 import { ActionRowBuilder, ButtonInteraction, ButtonBuilder, ButtonStyle } from "discord.js";
 import { AhriLogger } from '../../../structures/Logger';
@@ -27,12 +27,12 @@ export const build = async (actionRowBuilder: ActionRowBuilder, options: options
 };
 export class ButtonHandler extends InteractionHandler {
 
-    public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
-        super(ctx, {
-            ...options,
-            interactionHandlerType: InteractionHandlerTypes.Button
-        });
-    }
+  public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
+    super(ctx, {
+      ...options,
+      interactionHandlerType: InteractionHandlerTypes.Button
+    });
+  }
 
     public override async parse(interaction: ButtonInteraction) {
         const cat: string = interaction.customId.split(/:+/g)[0];
