@@ -119,7 +119,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete `Combo` **1**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete `Combo` **1**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -261,7 +261,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `Combo` **2**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `Combo` **2**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -403,7 +403,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete `Combo` **3**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete `Combo` **3**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -544,7 +544,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el \`Combo\` **4**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el \`Combo\` **4**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -684,7 +684,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el \`Combo\` **5**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el \`Combo\` **5**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],

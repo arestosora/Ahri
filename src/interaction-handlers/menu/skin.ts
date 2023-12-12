@@ -111,7 +111,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado `Skin Epica de 1350 RP`. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado `Skin Epica de 1350 RP` <:epicskin:1149419858241532049>. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -322,7 +322,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado `Skin Legendaria de 1820 RP`. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado `Skin Legendaria de 1820 RP` <:legendary:1149420773275095222>. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -533,7 +533,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado `Skin Definitiva de 3250 RP`. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado `Skin Definitiva de 3250 RP` <:Definitive:1149420803151122503>. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
