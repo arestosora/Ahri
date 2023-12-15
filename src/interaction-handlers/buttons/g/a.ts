@@ -33,8 +33,8 @@ export class ButtonHandler extends InteractionHandler {
   public override async parse(interaction: ButtonInteraction) {
     const cat: string = interaction.customId.split(/:+/g)[0];
     const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-     if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-  //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+    // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
+    if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
       const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
       let permited: boolean = restriction.startsWith("a")
       if (!permited && restriction.startsWith("u")) {
@@ -115,7 +115,7 @@ export class ButtonHandler extends InteractionHandler {
               name: 'Name', value: `\`${dataArray[1]}\``, inline: true
             },
             {
-              name: 'Product', value: `\`${dataArray[2]}\` RP`, inline: true
+              name: 'Product', value: `\`${dataArray[2]} RP\``, inline: true
             },
             {
               name: 'Comp', value: `[Click aquí](${dataArray[3]})`, inline: true
@@ -150,7 +150,7 @@ export class ButtonHandler extends InteractionHandler {
               name: 'Name', value: `\`${dataArray[1]}\``, inline: true
             },
             {
-              name: 'Product', value: `\`Skin ${dataArray[2]}\` RP`, inline: true
+              name: 'Product', value: `\`Skin ${dataArray[2]}RP\``, inline: true
             },
             {
               name: 'Comp', value: `[Click aquí](${dataArray[3]})`, inline: true
