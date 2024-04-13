@@ -1,4 +1,4 @@
-import { InteractionHandler, InteractionHandlerTypes, PieceContext } from '@sapphire/framework';
+import { InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework';
 import { EmbedBuilder, TextChannel } from 'discord.js';
 import { ActionRowBuilder, ButtonInteraction, ButtonBuilder, ButtonStyle } from "discord.js";
 import { Ahri } from '../../..';
@@ -23,7 +23,7 @@ export const build = async (actionRowBuilder: ActionRowBuilder, options: options
   })
 };
 export class ButtonHandler extends InteractionHandler {
-  public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
+  public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
     super(ctx, {
       ...options,
       interactionHandlerType: InteractionHandlerTypes.Button
@@ -33,7 +33,6 @@ export class ButtonHandler extends InteractionHandler {
   public override async parse(interaction: ButtonInteraction) {
     const cat: string = interaction.customId.split(/:+/g)[0];
     const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-    // if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
     if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
       const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
       let permited: boolean = restriction.startsWith("a")
@@ -268,6 +267,42 @@ export class ButtonHandler extends InteractionHandler {
 
         if (dataArray[5] === "co") {
           const channel = Ahri.channels.cache.get(Channels.Staff.Combos_Channel) as TextChannel
+          return channel.send({
+            components: [botone],
+            embeds: [embed],
+            content: '@here'
+          })
+        }
+      }
+        break;
+
+      case "tf": {
+        const embed = new EmbedBuilder()
+        .setTitle('PRODUCTO DE TFT')
+          .setAuthor({
+            name: interaction.user.username,
+            iconURL: interaction.user.displayAvatarURL()
+          })
+          .setColor(Colors.Info)
+          .setThumbnail(interaction.user.displayAvatarURL())
+          .addFields([
+            {
+              name: 'Name', value: `\`${dataArray[1]}\``, inline: true
+            },
+            {
+              name: 'Product', value: `\`${dataArray[2]}\``, inline: true
+            },
+            {
+              name: 'Comp', value: `[Click aquí](${dataArray[3]})`, inline: true
+            }
+          ])
+          .setFooter({
+            text: `UserID: ${dataArray[0]}`
+          })
+          .setTimestamp()
+
+        if (dataArray[5] === "tf") {
+          const channel = Ahri.channels.cache.get(Channels.Staff.TFT_Channel) as TextChannel
           return channel.send({
             components: [botone],
             embeds: [embed],

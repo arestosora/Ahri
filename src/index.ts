@@ -1,8 +1,7 @@
 import { AhriClient } from "./structures/Client";
-import { BotData } from "./data";
+import { Settings } from "./data";
 
 const Ahri = new AhriClient();
-const AhriData = BotData.getInstance();
-Ahri.login(AhriData.getToken)
+Ahri.login(Settings.Credentials.token)
 
 export { Ahri };

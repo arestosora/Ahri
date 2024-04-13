@@ -1,4 +1,4 @@
-import { InteractionHandler, InteractionHandlerTypes, PieceContext } from "@sapphire/framework";
+import { InteractionHandler, InteractionHandlerTypes  } from "@sapphire/framework";
 import { StringSelectMenuInteraction, EmbedBuilder, MessageCollector, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } from "discord.js";
 import { TextOnImageOptions, Utils } from "../../utils/util";
 const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
@@ -88,7 +88,7 @@ export const build = async (
     });
 };
 export class ShopMenuHandler extends InteractionHandler {
-    public constructor(ctx: PieceContext, options: InteractionHandler.Options) {
+    public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
         super(ctx, {
             ...options,
             interactionHandlerType: InteractionHandlerTypes.SelectMenu,
@@ -139,18 +139,19 @@ export class ShopMenuHandler extends InteractionHandler {
                 case "765": {
 
                     await interaction.update({
-                        embeds: [
-                            new EmbedBuilder()
-                                .setAuthor({
-                                    name: this.container.client.user.username,
-                                    iconURL: this.container.client.user.displayAvatarURL(),
-                                })
-                                .setDescription(
-                                    "Has seleccionado el paquete de `765` **RP**. Ahora por favor escribe tu nombre de invocador."
-                                )
-                                .setColor(Colors.Success),
-                        ],
-                        components: [],
+
+                      embeds: [
+                        new EmbedBuilder()
+                          .setAuthor({
+                            name: this.container.client.user.username,
+                            iconURL: this.container.client.user.displayAvatarURL(),
+                          })
+                          .setDescription(
+                            "Has seleccionado el paquete de `765` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
+                          )
+                          .setColor(Colors.Success),
+                      ],
+                      components: [],
                     });
 
                     const nameCollector = new MessageCollector(interaction.channel, {
@@ -291,7 +292,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `1530` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `1530` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -434,7 +435,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `2295` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `2295` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -578,7 +579,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `3060` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `3060` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -721,7 +722,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `3825` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `3825` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -865,7 +866,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `4590` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `4590` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1009,7 +1010,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `5355` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `5355` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1153,7 +1154,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `6120` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `6120` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1297,7 +1298,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `6885` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `6885` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1440,7 +1441,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `7650` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `7650` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],
@@ -1583,7 +1584,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                     iconURL: this.container.client.user.displayAvatarURL(),
                                 })
                                 .setDescription(
-                                    "Has seleccionado el paquete de `8415` **RP**. Ahora por favor escribe tu nombre de invocador."
+                                    "Has seleccionado el paquete de `8415` **RP**. Ahora por favor escribe tu \`RiotID\` con su respectivo \`#\`, por ejemplo \`Ahri#RPHub\`. "
                                 )
                                 .setColor(Colors.Success),
                         ],

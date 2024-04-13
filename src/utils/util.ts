@@ -50,7 +50,8 @@ export class Utils {
             Skins_Channel: process.env.SKINS_CHANNEL,
             Misc_Channel: process.env.MISC_CHANNEL,
             Artesanias_Channel: process.env.ARTESANIA_CHANNEL,
-            Combos_Channel: process.env.COMBOS_CHANNEL
+            Combos_Channel: process.env.COMBOS_CHANNEL,
+            TFT_Channel: process.env.TFT_CHANNEL
         }
     };
 
