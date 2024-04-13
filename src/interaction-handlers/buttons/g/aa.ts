@@ -46,7 +46,6 @@ export class ButtonHandler extends InteractionHandler {
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
         if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            //   if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -78,9 +77,12 @@ export class ButtonHandler extends InteractionHandler {
                 return cuentasAsignadas;
             }
 
+        
             const cuenta = cuentas[i];
             const RPsDisponibles = cuenta.RPDisponibles;
             const RPsAsignar = Math.min(RPsDisponibles, RP_Pedido - RPsAsignados);
+        
+
 
             if (RPsDisponibles >= RPsAsignar) {
                 cuentasAsignadas.push({
@@ -90,16 +92,16 @@ export class ButtonHandler extends InteractionHandler {
                     RPsAsignados: RPsAsignar
                 });
 
+        
                 const newRPDisponibles = RPsDisponibles - RPsAsignar;
                 let newEstado = cuenta.Estado;
-
+        
                 if (newRPDisponibles < 125) {
                     newEstado = 'No Disponible';
                 }
-
+        
                 const tableName = dataArray[5]; // Valor en la posición 5 del array
-
-                // Mapeo de valores de dataArray[5] a las tablas de la base de datos correspondientes
+        
                 const tableMapping = {
                     "co": Database.cuentasCombo,
                     "ca": Database.cuentasBanco,
@@ -123,6 +125,8 @@ export class ButtonHandler extends InteractionHandler {
 
             return asignarRPs(RP_Pedido, cuentas, i + 1, RPsAsignados, cuentasAsignadas);
         }
+        
+        
 
 
 
@@ -502,6 +506,7 @@ export class ButtonHandler extends InteractionHandler {
 
                 const cuentasAsignadas = [];
 
+
                 for (const cuenta of cuentas) {
                     const asignacionExitosa = await asignarRPs(Pedido, [cuenta]);
 
@@ -509,6 +514,7 @@ export class ButtonHandler extends InteractionHandler {
                         cuentasAsignadas.push(cuenta);
                     }
                 }
+
 
                 if (cuentasAsignadas.length === 0) {
                     return interaction.reply({
@@ -770,6 +776,7 @@ export class ButtonHandler extends InteractionHandler {
                 for (const cuenta of cuentas) {
                     const asignacionExitosa = await asignarRPs(Pedido, [cuenta]);
 
+
                     if (asignacionExitosa) {
                         cuentasAsignadas.push(cuenta);
                     }
@@ -869,6 +876,7 @@ export class ButtonHandler extends InteractionHandler {
                         embeds: [
                             new EmbedBuilder()
                                 .setDescription(`Tu pedido ha sido aceptado ${Emojis.General.Success}. Por favor envía una solicitud de amistad a las siguientes cuentas en **League of Legends:**\n > \`${nicknamesAsignados}\`. ${Emojis.General.Info}\n**Nota:** Recibirás una confirmación en este chat una vez se haya entregado tu pedido. ${Emojis.Misc.Love}`)
+
                                 .setColor(Colors.Info)
                                 .setFooter({
                                     text: `Referencia: ${dataArray[4]}`
@@ -1003,6 +1011,7 @@ export class ButtonHandler extends InteractionHandler {
                         embeds: [
                             new EmbedBuilder()
                                 .setDescription(`Tu pedido ha sido aceptado ${Emojis.General.Success}. Por favor envía una solicitud de amistad a las siguientes cuentas en **League of Legends:**\n > \`${nicknamesAsignados}\`. ${Emojis.General.Info}\n**Nota:** Recibirás una confirmación en este chat una vez se haya entregado tu pedido. ${Emojis.Misc.Love}`)
+
                                 .setColor(Colors.Info)
                                 .setFooter({
                                     text: `Referencia: ${dataArray[4]}`

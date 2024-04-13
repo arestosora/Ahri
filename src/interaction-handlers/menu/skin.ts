@@ -73,8 +73,8 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-            //  if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+             if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
             if (!permited && restriction.startsWith("u")) {
@@ -548,7 +548,12 @@ export class ShopMenuHandler extends InteractionHandler {
 
                             let skin = "";
                             SkinCollector.on("collect", (message) => {
-                                skin = message.content;
+                                if(message.attachments){
+                                     interaction.channel.send({ content: ``})
+                                }
+                                if (message.content && message.content.trim() !== "" || '' && message.attachments.size === 0) {
+                                    skin = message.content;
+                                } 
                             });
 
                             SkinCollector.on("end", async (collected, reason) => {
@@ -574,7 +579,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             iconURL: interaction.user.displayAvatarURL(),
                                         })
                                         .setDescription(
-                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                             `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** \`3105947529\` <:nequi:1134763235522924596>, **Bancolombia** \`91260328099\` <:bancolombia:1134763479925010518>,  **PayPal**: https://bit.ly/RPHUBGLOBAL <:paypal:1134763669855678546>. o **Binance**: \`114799953\` <:binance:1135310399084965923>`
                                         )
                                         .setColor(Colors.Success);
 
@@ -785,7 +790,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             iconURL: interaction.user.displayAvatarURL(),
                                         })
                                         .setDescription(
-                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                             `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** \`3105947529\` <:nequi:1134763235522924596>, **Bancolombia** \`91260328099\` <:bancolombia:1134763479925010518>,  **PayPal**: https://bit.ly/RPHUBGLOBAL <:paypal:1134763669855678546>. o **Binance**: \`114799953\` <:binance:1135310399084965923>`
                                         )
                                         .setColor(Colors.Success);
 
@@ -996,7 +1001,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                             iconURL: interaction.user.displayAvatarURL(),
                                         })
                                         .setDescription(
-                                            `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** <:nequi:1134763235522924596>, **Bancolombia** <:bancolombia:1134763479925010518> o por **PayPal** <:paypal:1134763669855678546>.`
+                                             `Perfecto, tu nombre de invocador es \`${name}\` y la skin que deseas adquirir es \`${skin}\`. Ahora, envía el comprobante de pago como una imagen. ${Emojis.General.Success}\nRecuerda que puedes pagar por **Nequi** \`3105947529\` <:nequi:1134763235522924596>, **Bancolombia** \`91260328099\` <:bancolombia:1134763479925010518>,  **PayPal**: https://bit.ly/RPHUBGLOBAL <:paypal:1134763669855678546>. o **Binance**: \`114799953\` <:binance:1135310399084965923>`
                                         )
                                         .setColor(Colors.Success);
 
