@@ -170,6 +170,40 @@ export class ButtonHandler extends InteractionHandler {
         }
       }
         break;
+      case "ch": {
+        const embed = new EmbedBuilder()
+          .setAuthor({
+            name: interaction.user.username,
+            iconURL: interaction.user.displayAvatarURL()
+          })
+          .setColor(Colors.Info)
+          .setThumbnail(interaction.user.displayAvatarURL())
+          .addFields([
+            {
+              name: 'Name', value: `\`${dataArray[1]}\``, inline: true
+            },
+            {
+              name: 'Product', value: `Chroma`, inline: true
+            },
+            {
+              name: 'Comp', value: `[Click aquí](${dataArray[3]})`, inline: true
+            }
+          ])
+          .setFooter({
+            text: `UserID: ${dataArray[0]}`
+          })
+          .setTimestamp()
+
+        if (dataArray[5] === "ch") {
+          const channel = Ahri.channels.cache.get(Channels.Staff.Skins_Channel) as TextChannel
+          return channel.send({
+            components: [botone],
+            embeds: [embed],
+            content: '@here'
+          })
+        }
+      }
+        break;
       // Miscelanea
       case "mc": {
         const embed = new EmbedBuilder()

@@ -107,6 +107,7 @@ export class ButtonHandler extends InteractionHandler {
                     "ca": Database.cuentasBanco,
                     "rp": Database.cuentas,
                     "sk": Database.cuentasBanco,
+                    "ch": Database.cuentasBanco,
                     "tf": Database.cuentasBanco
                 };
 
@@ -131,6 +132,142 @@ export class ButtonHandler extends InteractionHandler {
 
 
         switch (dataArray[5]) {
+            case "ch": {
+                const custompedido = dataArray[2];
+                const Pedido = parseInt(custompedido);
+
+                const cuentas = await Database.cuentasBanco.findMany({
+                    where: {
+                        Estado: 'Disponible'
+                    },
+                    orderBy: {
+                        RPDisponibles: 'asc'
+                    }
+                });
+
+                if (cuentas.length === 0) {
+                    return interaction.reply({
+                        content: "No hay suficientes cuentas disponibles para este pedido.",
+                        ephemeral: true
+                    });
+                }
+
+                const cuentasAsignadas = [];
+
+                for (const cuenta of cuentas) {
+                    const asignacionExitosa = await asignarRPs(Pedido, [cuenta]);
+
+
+                    if (asignacionExitosa) {
+                        cuentasAsignadas.push(cuenta);
+                    }
+                }
+
+                if (cuentasAsignadas.length === 0) {
+                    return interaction.reply({
+                        content: "No se pudo asignar ninguna cuenta para este pedido.",
+                        ephemeral: true
+                    });
+                }
+                const nicknamesAsignados = cuentasAsignadas.map(cuenta => cuenta.Nickname).join(', ');
+
+                await Database.pedidos.create({
+                    data: {
+                        Referencia: dataArray[4],
+                        SN: dataArray[1],
+                        UserID: dataArray[0],
+                        Pedido: `${dataArray[2]}`,
+                        Cuentas_Asignadas: nicknamesAsignados,
+                        Comprobante: `${dataArray[3]}`,
+                    }
+                })
+
+                const usuario = await Database.users.findUnique({
+                    where: {
+                        UserID: dataArray[0]
+                    }
+                })
+
+                if (!usuario) {
+                    await Database.users.create({
+                        data: {
+                            UserID: dataArray[0]
+                        }
+                    })
+                } else {
+                    await Database.$queryRaw`UPDATE Users
+                  SET Pedidos = Pedidos + 1,
+                      updatedAt = NOW(3)
+                  WHERE UserID = ${dataArray[1]}`
+                }
+
+                const embed = new EmbedBuilder()
+                    .setDescription(`Pedido de \`${user.username}\` aceptado por \`${interaction.user.username}\` ${Emojis.General.Success}`)
+                    .setAuthor({
+                        name: user.username,
+                        iconURL: user.displayAvatarURL()
+                    })
+                    .setColor(Colors.Info)
+                    .setThumbnail(user.displayAvatarURL())
+                    .addFields([
+                        {
+                            name: 'Name',
+                            value: `\`${dataArray[1]}\``,
+                            inline: true
+                        },
+                        {
+                            name: 'Product',
+                            value: `Chroma`,
+                            inline: true
+                        },
+                        {
+                            name: 'Comp',
+                            value: `[Click aquí](${dataArray[3]})`,
+                            inline: true
+                        }
+                    ])
+                    .setFooter({
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
+                    });
+
+                if (cuentasAsignadas && cuentasAsignadas.length > 0) {
+                    cuentasAsignadas.forEach((cuenta, index) => {
+                        embed.addFields({
+                            name: `Cuenta Asignada ${index + 1}`,
+                            value: `**Nickname:** \`${cuenta.Nickname || 'N/A'}\`, \n**Username:** \`${cuenta.Username || 'N/A'}\`, \n**Password:** ||\`${cuenta.Password || 'N/A'}\`||`,
+                            inline: true
+                        });
+                    });
+                } else {
+                    embed.addFields({
+                        name: `Cuenta Asignada`,
+                        value: cuentasAsignadas === undefined ? "N/A" : "No hay cuentas asignadas para este pedido.",
+                        inline: true
+                    });
+                }
+
+                await interaction.update({
+                    components: [botone],
+                    embeds: [embed],
+                    content: `Pedido por entregar ${Emojis.Misc.Loading}`
+                });
+
+                await user.createDM().then(async dm => {
+                    return dm.send({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setDescription(`Tu pedido ha sido aceptado ${Emojis.General.Success}. Por favor envía una solicitud de amistad a las siguientes cuentas en **League of Legends:**\n > \`${nicknamesAsignados}\`. ${Emojis.General.Info}\n**Nota:** Recibirás una confirmación en este chat una vez se haya entregado tu pedido. ${Emojis.Misc.Love}`)
+
+                                .setColor(Colors.Info)
+                                .setFooter({
+                                    text: `Referencia: ${dataArray[4]}`
+                                })
+                                .setTimestamp()
+                        ]
+                    });
+                });
+            }
+                break;
             case "co": {
                 const Pedido = 2295;
 

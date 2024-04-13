@@ -26,11 +26,11 @@ export const build = async (
                 )
                 .setDisabled(options.disabled)
                 .setOptions(
-                    {
-                        label: "Riot Points",
-                        emoji: "1153831080906985662", // 1
-                        value: "RP:HIM",
-                    },
+                    // {
+                    //     label: "Riot Points",
+                    //     emoji: "1153831080906985662", // 1
+                    //     value: "RP:HIM",
+                    // },
                     {
                         label: "Skins League of Legends",
                         emoji: "1149420803151122503", // 1
