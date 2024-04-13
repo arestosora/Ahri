@@ -48,8 +48,13 @@ export const build = async (
                     },
                     {
                         label: "Teamfight Tactics",
-                        emoji: "1153438711732781086", // 1
+                        emoji: "1222595790170488832", // 1
                         value: "tft:HIM",
+                    },
+                    {
+                        label: "TFT Coins",
+                        emoji: "1222595790170488832", // 1
+                        value: "tftc:HIM",
                     },
                     {
                         label: "Combos",
@@ -86,7 +91,7 @@ export class ShopMenuHandler extends InteractionHandler {
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
 
-        if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
 
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
@@ -274,6 +279,26 @@ export class ShopMenuHandler extends InteractionHandler {
                 case "tft": {
                     const row = new ActionRowBuilder<StringSelectMenuBuilder>
                     const menu = await import('./tft');
+                    await menu.build(row, { disabled: false, author: interaction.user.id }, [])
+                    await interaction.update({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setAuthor({
+                                    name: this.container.client.user.username,
+                                    iconURL: this.container.client.user.displayAvatarURL(),
+                                })
+                                .setDescription(
+                                    "Parece que has seleccionado la opcion de \`Teamfight Tactics\` por favor selecciona el combo que deseas Adquirir."
+                                )
+                                .setColor(Colors.Success),
+                        ],
+                        components: [row],
+                    });
+                }
+                    break;
+                case "tftc": {
+                    const row = new ActionRowBuilder<StringSelectMenuBuilder>
+                    const menu = await import('./tftc');
                     await menu.build(row, { disabled: false, author: interaction.user.id }, [])
                     await interaction.update({
                         embeds: [

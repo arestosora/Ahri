@@ -236,7 +236,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`, `rp`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`, `tf`]
                                     );
 
                                     await interaction.channel.send({

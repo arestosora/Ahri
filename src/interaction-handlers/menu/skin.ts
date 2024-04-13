@@ -32,7 +32,7 @@ export const build = async (
                     {
                         label: "Skin Misteriosa",
                         emoji: "1222588752581361705", // 1
-                        value: "skin_misteriosa:HIM",
+                        value: "490:HIM",
                     },
                     {
                         label: "Skin 975 RP",
@@ -73,7 +73,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-             if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
 
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
             let permited: boolean = restriction.startsWith("a")
@@ -113,7 +113,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
             switch (opcion) {
 
-                case "skin_misteriosa": {
+                case "490": {
 
                     await interaction.update({
                         embeds: [
@@ -239,7 +239,7 @@ export class ShopMenuHandler extends InteractionHandler {
                                         { disabled: false, author: interaction.user.id },
                                         []
                                     );
-                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`, `rp`]
+                                    await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${name}`, `${selectedOption}`, `${shortURL}`, `${UniqueID}`, `sk`]
                                     );
 
                                     await interaction.channel.send({

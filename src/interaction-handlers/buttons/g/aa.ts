@@ -77,11 +77,11 @@ export class ButtonHandler extends InteractionHandler {
                 return cuentasAsignadas;
             }
 
-        
+
             const cuenta = cuentas[i];
             const RPsDisponibles = cuenta.RPDisponibles;
             const RPsAsignar = Math.min(RPsDisponibles, RP_Pedido - RPsAsignados);
-        
+
 
 
             if (RPsDisponibles >= RPsAsignar) {
@@ -92,16 +92,16 @@ export class ButtonHandler extends InteractionHandler {
                     RPsAsignados: RPsAsignar
                 });
 
-        
+
                 const newRPDisponibles = RPsDisponibles - RPsAsignar;
                 let newEstado = cuenta.Estado;
-        
+
                 if (newRPDisponibles < 125) {
                     newEstado = 'No Disponible';
                 }
-        
+
                 const tableName = dataArray[5]; // Valor en la posición 5 del array
-        
+
                 const tableMapping = {
                     "co": Database.cuentasCombo,
                     "ca": Database.cuentasBanco,
@@ -125,8 +125,8 @@ export class ButtonHandler extends InteractionHandler {
 
             return asignarRPs(RP_Pedido, cuentas, i + 1, RPsAsignados, cuentasAsignadas);
         }
-        
-        
+
+
 
 
 
@@ -254,14 +254,7 @@ export class ButtonHandler extends InteractionHandler {
                 const custompedido = dataArray[2];
                 const Pedido = parseInt(custompedido);
 
-                const cuentas = await Database.cuentas.findMany({
-                    where: {
-                        Estado: 'Disponible'
-                    },
-                    orderBy: {
-                        RPDisponibles: 'asc'
-                    }
-                });
+                const cuentas = []
 
                 const cuentasAsignadas = await asignarRPs(Pedido, cuentas);
 
@@ -353,6 +346,112 @@ export class ButtonHandler extends InteractionHandler {
                     return dm.send({
                         embeds: [new EmbedBuilder()
                             .setDescription(`Tu pedido de \`WildCores\` ha sido aceptado ${Emojis.General.Success}.  ${Emojis.Misc.Love}`)
+                            .setColor(Colors.Info)
+                            .setFooter({
+                                text: `Referencia: ${dataArray[4]}`
+                            })
+                            .setTimestamp()
+                        ]
+                    });
+                });
+            }
+                break;
+            case "tftc": {
+                const custompedido = dataArray[2];
+                const Pedido = parseInt(custompedido);
+
+                const cuentas = []
+
+                const cuentasAsignadas = await asignarRPs(Pedido, cuentas);
+
+                const nicknamesAsignados = cuentasAsignadas.map(cuenta => cuenta.Nickname).join(', ');
+
+                await Database.pedidos.create({
+                    data: {
+                        Referencia: dataArray[4],
+                        SN: dataArray[1],
+                        UserID: dataArray[0],
+                        Pedido: `${dataArray[2]}`,
+                        Cuentas_Asignadas: nicknamesAsignados,
+                        Comprobante: `${dataArray[3]}`,
+                    }
+                })
+
+                const usuario = await Database.users.findUnique({
+                    where: {
+                        UserID: dataArray[0]
+                    }
+                })
+
+                if (!usuario) {
+                    await Database.users.create({
+                        data: {
+                            UserID: dataArray[0]
+                        }
+                    })
+                } else {
+                    await Database.$queryRaw`UPDATE Users
+                      SET Pedidos = Pedidos + 1,
+                          updatedAt = NOW(3)
+                      WHERE UserID = ${dataArray[1]}`
+                }
+
+                const embed = new EmbedBuilder()
+                    .setDescription(`Pedido de \`${user.username}\` aceptado por \`${interaction.user.username}\` ${Emojis.General.Success}`)
+                    .setAuthor({
+                        name: user.username,
+                        iconURL: user.displayAvatarURL()
+                    })
+                    .setColor(Colors.Info)
+                    .setThumbnail(user.displayAvatarURL())
+                    .addFields([
+                        {
+                            name: 'Name',
+                            value: `\`${dataArray[1]}\``,
+                            inline: true
+                        },
+                        {
+                            name: 'Product',
+                            value: ` TFT COINS \`${dataArray[2]}\``,
+                            inline: true
+                        },
+                        {
+                            name: 'Comp',
+                            value: `[Click aquí](${dataArray[3]})`,
+                            inline: true
+                        }
+                    ])
+                    .setFooter({
+                        text: `UserID: ${dataArray[0]} ・ Ref: ${dataArray[4]}`
+                    });
+
+                if (cuentasAsignadas && cuentasAsignadas.length > 0) {
+                    cuentasAsignadas.forEach((cuenta, index) => {
+                        embed.addFields({
+                            name: `Cuenta Asignada ${index + 1}`,
+                            value: `**Nickname:** \`${cuenta.Nickname || 'N/A'}\`, \n**Username:** \`${cuenta.Username || 'N/A'}\`, \n**Password:** ||\`${cuenta.Password || 'N/A'}\`|| \n**RP Asignado:** \`${cuenta.RPsAsignados || 'N/A'}\``,
+                            inline: true
+                        });
+                    });
+                } else {
+                    embed.addFields({
+                        name: `Cuenta Asignada`,
+                        value: cuentasAsignadas === undefined ? "N/A" : "No hay cuentas asignadas para este pedido.",
+                        inline: true
+                    });
+                }
+
+
+
+                await interaction.update({
+                    components: [botone],
+                    embeds: [embed],
+                    content: `Pedido por entregar ${Emojis.Misc.Loading}`
+                });
+                await user.createDM().then(async dm => {
+                    return dm.send({
+                        embeds: [new EmbedBuilder()
+                            .setDescription(`Tu pedido de \`TFT Coins\` ha sido aceptado ${Emojis.General.Success}.  ${Emojis.Misc.Love}`)
                             .setColor(Colors.Info)
                             .setFooter({
                                 text: `Referencia: ${dataArray[4]}`
