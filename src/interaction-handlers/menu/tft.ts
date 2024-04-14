@@ -391,7 +391,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                                         const textOptions: TextOnImageOptions = {
                                             text: `${name}\n${skin}`,
-                                            fontSize: 50, // El tamaño de la fuente.
+                                            fontSize: 20, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
                                             y: 200, // Posición y del texto en la imagen.
@@ -887,7 +887,7 @@ export class ShopMenuHandler extends InteractionHandler {
 
                                         const textOptions: TextOnImageOptions = {
                                             text: `${name}\n${skin}`,
-                                            fontSize: 50, // El tamaño de la fuente.
+                                            fontSize: 20, // El tamaño de la fuente.
                                             fontColor: 'red', // El color del texto (puede ser un valor CSS válido como 'red', '#FF0000', etc.).
                                             x: 500, // Posición x del texto en la imagen.
                                             y: 200, // Posición y del texto en la imagen.
