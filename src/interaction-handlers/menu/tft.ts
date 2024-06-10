@@ -192,9 +192,9 @@ export class ShopMenuHandler extends InteractionHandler {
 
                             imageCollector.on("collect", async (message) => {
                                 const attachment = message.attachments.first();
-                                const attachmentURL = attachment?.url;
-                                const attachmentName = attachment?.name;
-                                await shortenURL(attachmentURL).then(async (shortURL) => {
+                               const attachmentURL = attachment?.url;
+                                const cloudinaryImage = await uploadImageToCloudinary(attachmentURL);
+                                await shortenURL(cloudinaryImage).then(async (shortURL) => {
                                     const AttachmentEmbed = new EmbedBuilder()
                                         .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
                                         .setAuthor({
@@ -545,9 +545,9 @@ export class ShopMenuHandler extends InteractionHandler {
 
                             imageCollector.on("collect", async (message) => {
                                 const attachment = message.attachments.first();
-                                const attachmentURL = attachment?.url;
-                                const attachmentName = attachment?.name;
-                                await shortenURL(attachmentURL).then(async (shortURL) => {
+                               const attachmentURL = attachment?.url;
+                                const cloudinaryImage = await uploadImageToCloudinary(attachmentURL);
+                                await shortenURL(cloudinaryImage).then(async (shortURL) => {
                                     const AttachmentEmbed = new EmbedBuilder()
                                         .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
                                         .setAuthor({
@@ -687,9 +687,9 @@ export class ShopMenuHandler extends InteractionHandler {
 
                             imageCollector.on("collect", async (message) => {
                                 const attachment = message.attachments.first();
-                                const attachmentURL = attachment?.url;
-                                const attachmentName = attachment?.name;
-                                await shortenURL(attachmentURL).then(async (shortURL) => {
+                               const attachmentURL = attachment?.url;
+                                const cloudinaryImage = await uploadImageToCloudinary(attachmentURL);
+                                await shortenURL(cloudinaryImage).then(async (shortURL) => {
                                     const AttachmentEmbed = new EmbedBuilder()
                                         .setTitle("¡Resumen de tu pedido! " + Emojis.General.Warning)
                                         .setAuthor({
