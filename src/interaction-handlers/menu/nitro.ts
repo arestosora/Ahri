@@ -1,7 +1,7 @@
-import { InteractionHandler, InteractionHandlerTypes  } from "@sapphire/framework";
+import { InteractionHandler, InteractionHandlerTypes } from "@sapphire/framework";
 import { StringSelectMenuInteraction, EmbedBuilder, MessageCollector, ActionRowBuilder, ButtonBuilder, StringSelectMenuBuilder } from "discord.js";
 import { Utils } from "../../utils/util";
-const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
+const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils;
 import { Ahri } from "../..";
 import { AhriLogger } from "../../structures/Logger";
 
@@ -25,17 +25,16 @@ export const build = async (
                     options.disabled ? "Menú no disponible" : "Seleccione una opción"
                 )
                 .setDisabled(options.disabled)
-                .setOptions(
-                    {
-                        label: "Nitro Boost.",
-                        emoji: "1153438711732781086", // 2
-                        value: "Nitro:HIM",
-                    }
-                )
+                .setOptions({
+                    label: "Nitro Boost.",
+                    emoji: "1153438711732781086", // 2
+                    value: "Nitro:HIM",
+                })
         );
         resolve(true);
     });
 };
+
 export class ShopMenuHandler extends InteractionHandler {
     public constructor(ctx: InteractionHandler.LoaderContext, options: InteractionHandler.Options) {
         super(ctx, {
@@ -44,17 +43,14 @@ export class ShopMenuHandler extends InteractionHandler {
         });
     }
 
-
     public override async parse(interaction: StringSelectMenuInteraction) {
-
         const cat: string = interaction.customId.split(/:+/g)[0];
         const id: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[0];
-      if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
-        // if (cat == __dirname.split(/\\+/g)[__dirname.split(/\\+/g).length - 1] && id == __filename.split(/\\+/g)[__filename.split(/\\+/g).length - 1].split(/\.+/g)[0]) {
+        if (cat == __dirname.split(/\/+/g)[__dirname.split(/\/+/g).length - 1] && id == __filename.split(/\/+/g)[__filename.split(/\/+/g).length - 1].split(/\.+/g)[0]) {
             const restriction: string = interaction.customId.split(/:+/g)[1].split(/_+/g)[1];
-            let permited: boolean = restriction.startsWith("a")
+            let permited: boolean = restriction.startsWith("a");
             if (!permited && restriction.startsWith("u")) {
-                permited = (interaction.user.id == restriction.slice(1, restriction.length))
+                permited = (interaction.user.id == restriction.slice(1, restriction.length));
             }
             if (permited) {
                 return this.some();
@@ -66,17 +62,13 @@ export class ShopMenuHandler extends InteractionHandler {
         }
     }
 
-
     public async run(interaction: StringSelectMenuInteraction) {
         try {
             const UniqueID = await IDGenerator(5);
-            const data = interaction.customId
-                .split(/_+/g)
-            [interaction.customId.split(/_+/g).length - 1].split(/,+/g);
+            const data = interaction.customId.split(/_+/g)[interaction.customId.split(/_+/g).length - 1].split(/,+/g);
             const user = data[0];
 
             let selectedOption = interaction.values[0];
-
             selectedOption = selectedOption.replace(":HIM", user).replace("ME", interaction.user.id);
             let args: any[] = selectedOption.split(/:+/g);
 
@@ -97,10 +89,12 @@ export class ShopMenuHandler extends InteractionHandler {
                         ],
                         components: []
                     });
+
                     const imageCollector = new MessageCollector(interaction.channel, {
                         filter: (msg) =>
                             msg.author.id === interaction.user.id && msg.attachments.size > 0,
-                        max: 1
+                        max: 1,
+                        time: 120000,
                     });
 
                     imageCollector.on("collect", async (message) => {
@@ -128,27 +122,17 @@ export class ShopMenuHandler extends InteractionHandler {
                                     {
                                         name: 'Comprobante', value: `[Click aquí](${shortURL})`, inline: true
                                     }
-
                                 )
                                 .setDescription(`Por favor corrobora que esta información es correcta, ya que es la que se enviará para que procesen tu pedido.`)
                                 .setColor(Colors.Success)
                                 .setImage(attachmentURL);
 
                             const botone = new ActionRowBuilder<ButtonBuilder>();
-                            const module1 = await import(
-                                "../buttons/g/c"
-                            );
-                            const module2 = await import(
-                                "../buttons/g/a"
-                            );
+                            const module1 = await import("../buttons/g/c");
+                            const module2 = await import("../buttons/g/a");
 
-                            await module1.build(
-                                botone,
-                                { disabled: false, author: interaction.user.id },
-                                []
-                            );
-                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `Nitro`, `${shortURL}`, `${UniqueID}`,`mc`]
-                            );
+                            await module1.build(botone, { disabled: false, author: interaction.user.id }, []);
+                            await module2.build(botone, { disabled: false, author: interaction.user.id }, [`${interaction.user.id}`, `${interaction.user.username}`, `Nitro`, `${shortURL}`, `${UniqueID}`, `mc`]);
 
                             await interaction.channel.send({
                                 embeds: [AttachmentEmbed],
@@ -157,10 +141,24 @@ export class ShopMenuHandler extends InteractionHandler {
                         }).catch((error) => {
                             Log.error('Error al acortar la URL:', error);
                         });
+                    });
 
+                    imageCollector.on('end', (collected) => {
+                        if (collected.size === 0) {
+                            interaction.followUp({
+                                embeds: [
+                                    new EmbedBuilder()
+                                        .setAuthor({
+                                            name: `${Ahri.user.username}`,
+                                            iconURL: Ahri.user.displayAvatarURL(),
+                                        })
+                                        .setColor(Colors.Error)
+                                        .setDescription(`${Emojis.General.Error} No se recibió ningún comprobante de pago en el tiempo establecido. Por favor, inténtalo de nuevo.`)
+                                ],
+                            });
+                        }
                     });
                 }
-
                     break;
             }
 
@@ -181,4 +179,4 @@ export class ShopMenuHandler extends InteractionHandler {
             });
         }
     }
-}        
+}

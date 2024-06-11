@@ -4,6 +4,7 @@ import { TextOnImageOptions, Utils } from "../../utils/util";
 const { Emojis, Colors, drawTextOnImage, IDGenerator, shortenURL, Prices } = Utils
 import { Ahri } from "../..";
 import { AhriLogger } from "../../structures/Logger";
+import { uploadImageToCloudinary } from "../../utils/functions/Cloudinary";
 
 const Log = new AhriLogger();
 
