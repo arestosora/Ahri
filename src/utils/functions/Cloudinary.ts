@@ -12,10 +12,15 @@ cloudinary.config({
 export async function uploadImageToCloudinary(imagePath: string): Promise<string> {
     try {
         const result = await cloudinary.uploader.upload(imagePath, {
-            folder: 'folder_name', 
+            folder: 'folder_name',
         });
 
-        fs.unlinkSync(imagePath);
+        try {
+            fs.unlinkSync(imagePath)
+        } catch (error) {
+            console.error('Error al eliminar la imagen, posiblemente no existe.');
+        }
+
 
         return result.secure_url;
     } catch (error) {
