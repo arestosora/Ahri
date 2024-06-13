@@ -4,7 +4,7 @@ import { Utils } from '../util';
 const { API } = Utils;
 
 cloudinary.config({
-    cloud_name: 'deprv8mzu',
+    cloud_name: 'dpqmz7ivz',
     api_key: API.CloudinaryApiKey,
     api_secret: API.CloudinaryApiSecret
 });
